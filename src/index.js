@@ -1,12 +1,24 @@
+// dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import promise from "redux-promise";
+
+
+// user files
+import App from './components/App';
+import reducers from './reducers' // automatically imports the index.js file
+import './style/index.css';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const createStoreWithMiddleWare = applyMiddleware(promise)(createStore);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleWare(reducers)}>
+    <App />
+  </Provider>
+  , document.getElementById('root'));
+
+
 serviceWorker.unregister();
