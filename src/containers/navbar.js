@@ -1,5 +1,6 @@
 // dependencies
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Dropdown, Menu } from 'semantic-ui-react'
 
 const NavBar = () => (

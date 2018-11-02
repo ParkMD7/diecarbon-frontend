@@ -1,5 +1,5 @@
-const LOGIN_OR_SIGN_UP = 'LOGIN_OR_SIGN_UP'
-const SIGNOUT = 'SIGNOUT'
+import { LOGIN_OR_SIGN_UP } from '../constants'
+import { SIGNOUT } from '../constants'
 
 
 export const loginOrSignup = (user) => {

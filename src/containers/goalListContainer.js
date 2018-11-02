@@ -1,6 +1,7 @@
 // dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
@@ -20,11 +21,13 @@ class GoalListContainer extends Component {
       return (
         <Card fluid textalign='center' height='200px' width='150px' key={goal.id}>
           <Card.Header>{goal.title}</Card.Header>
+          {/* <Link> */}
           <Card.Content>
             <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='100px' width='100px'/>
             <Card.Meta>Difficulty: {goal.difficulty}</Card.Meta>
             <Card.Description>CO2 Reduction: {goal.footprint}</Card.Description>
           </Card.Content>
+          {/* </Link> */}
           <Card.Content extra>
             <button>
               <Icon name='add' />
@@ -37,7 +40,7 @@ class GoalListContainer extends Component {
   }
 
   render() {
-    console.log(this.props.goals);
+    console.log('logging the goal props', this.props.goals);
     return (
       <div>
         <h1>Goals</h1>
