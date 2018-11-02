@@ -1,20 +1,26 @@
+// possible delete??
+
 // dependencies
 import axios from "axios";
+import YTSearch from 'youtube-api-search';
 
 // user files
+import { FETCH_VIDEO } from '../constants';
+import { API_KEY } from '../config.js';
 
-const API_KEY = "6a78596d062df78380eff5944c4e5567";
-const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
+const search = YTSearch({key: API_KEY, term: 'carbon footprint and climate change'}, (returnedSearchData) => {
+  console.log(returnedSearchData[0]);
+})
+
+export const fetchVideo = () => {
 
 
-export const fetchWeather = (city) => {
-  const url = `${ROOT_URL}&q=${city},us`;
-  const request = axios.get(url);
+  const request = axios.get(search);
 
-  console.log('Request: ', request);
+  console.log('Youtube Request: ', search);
 
   return {
-    type: FETCH_WEATHER,
-    payload: request
+    type: FETCH_VIDEO,
+    payload: search
   };
 }

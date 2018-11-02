@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon, Image, Grid } from 'semantic-ui-react'
 
 // user files
 import { fetchGoals } from '../actions/fetchGoals'
@@ -19,11 +19,11 @@ class GoalListContainer extends Component {
     // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
     return _.map(this.props.goals, goal => {
       return (
-        <Card fluid textalign='center' height='200px' width='150px' key={goal.id}>
-          <Card.Header>{goal.title}</Card.Header>
+        <Card textalign='center' height='150px' width='100px' key={goal.id}>
+          <Card.Header><h3>{goal.title}</h3></Card.Header>
           {/* <Link> */}
           <Card.Content>
-            <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='100px' width='100px'/>
+            <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='75px' width='75px'/>
             <Card.Meta>Difficulty: {goal.difficulty}</Card.Meta>
             <Card.Description>CO2 Reduction: {goal.footprint}</Card.Description>
           </Card.Content>
@@ -42,9 +42,11 @@ class GoalListContainer extends Component {
   render() {
     console.log('logging the goal props', this.props.goals);
     return (
-      <div>
-        <h1>Goals</h1>
+      <div className="ui container center aligned">
+        <h1>Goals To Reduce Your Carbon Footprint</h1>
+        <Card.Group itemsPerRow={2} className="ui container center aligned" style={{overflowY: 'scroll', height: '600px'}}>
           {this.renderGoals()}
+        </Card.Group>
       </div>
     );
   }

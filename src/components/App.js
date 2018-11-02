@@ -53,9 +53,9 @@ class App extends Component {
             <NavBar />
             <br />
             <Switch>
+              <Route exact path="/" component={ () => <MainPage /> } />
               <Route exact path='/profile' component={ () => <Profile /> } />
               <Route exact path='/about' component={ () => <About /> } />
-              <Route exact path="/" component={ () => <MainPage /> } />
               <Route exact path='/signup' component={ () => <SignUp /> } />
               <Route exact path='/login' render={ () => <Login handleLogin={this.handleLogin} /> } />
             </Switch>

@@ -9,8 +9,8 @@ import promise from "redux-promise";
 // user files
 import App from './components/App';
 import reducers from './reducers' // automatically imports the index.js file
-import './style/index.css';
 import * as serviceWorker from './serviceWorker';
+import 'semantic-ui-css/semantic.min.css';
 
 const createStoreWithMiddleWare = applyMiddleware(promise)(createStore);
 
