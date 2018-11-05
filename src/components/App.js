@@ -1,10 +1,9 @@
 // dependencies
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 
 // user files
-// import '../style/App.css';
 import SignUp from '../forms/signup';
 import Login from '../forms/login';
 import MainPage from './mainPage';
@@ -16,40 +15,40 @@ import { loginOrSignup } from '../actions/currentUser'
 
 class App extends Component {
 
-  handleLogin = (event, value) => {
-    event.preventDefault()
-    fetch('http://localhost:3000/login', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(value)
-    })
-    .then( res => res.json())
-    .then( currentUser => {
-      if(currentUser.status === 'error'){
-        const errors = currentUser.message
-        alert(errors)
-      } else {
-        const user = {
-          id: currentUser.user.id,
-          username: currentUser.user.username,
-          name: currentUser.user.name,
-          age: currentUser.user.age,
-          location: currentUser.user.location,
-          picture: currentUser.user.picture,
-          footprint: currentUser.user.footprint,
-          goals: currentUser.user.goals
-        }
-        this.props.loginOrSignup(user)
-        }
-      })
-  }
+  // handleLogin = (event, value) => {
+  //   event.preventDefault()
+  //   fetch('http://localhost:3000/login', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(value)
+  //   })
+  //   .then( res => res.json())
+  //   .then( currentUser => {
+  //     if(currentUser.status === 'error'){
+  //       const errors = currentUser.message
+  //       alert(errors)
+  //     } else {
+  //       const user = {
+  //         id: currentUser.user.id,
+  //         username: currentUser.user.username,
+  //         name: currentUser.user.name,
+  //         age: currentUser.user.age,
+  //         location: currentUser.user.location,
+  //         picture: currentUser.user.picture,
+  //         footprint: currentUser.user.footprint,
+  //         goals: currentUser.user.goals
+  //       }
+  //       this.props.loginOrSignup(user)
+  //       }
+  //     })
+  // }
 
   render() {
+    console.log('%c APP Props: ', 'color: firebrick', this.props);
     return (
-        <BrowserRouter>
           <div>
             <NavBar />
             <br /><br /><br /><br />
@@ -62,7 +61,6 @@ class App extends Component {
               <Route exact path='/login' render={ () => <Login handleLogin={this.handleLogin} /> } />
             </Switch>
           </div>
-        </BrowserRouter>
     );
   }
 }
@@ -73,4 +71,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loginOrSignup })(App);
+export default withRouter(connect(mapStateToProps, {loginOrSignup})(App));

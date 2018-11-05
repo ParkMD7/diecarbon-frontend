@@ -16,9 +16,9 @@ export default function(state={}, action){
     case FETCH_GOAL:
       // include all goals we've fetched above & put them into this new object
       // add the newly fetched goal that a user has clicked on as a new key:value pair
-      console.log('this is the action', action.payload.data);
-      // return { ...state, [action.payload.data.id]: action.payload.data }
-      return action.payload.data 
+      // debugger
+      console.log('%c GoalReducer Action : ', 'color: orange', action.payload.data.id, action.payload.data)
+      return { ...state, [action.payload.data.id]: action.payload.data }
 
     default:
       return state
