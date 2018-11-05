@@ -10,10 +10,27 @@ import { fetchGoals } from '../actions/fetchGoals'
 
 
 class GoalListContainer extends Component {
+  // constructor(props){
+  //   super(props)
+  //
+  //   this.state = {
+  //     goalWasClicked: false,
+  //   }
+  // }
+
+
 
   componentDidMount() {
     this.props.fetchGoals()
   }
+
+  // handleShowGoal = (goalID) => {
+  //   debugger
+  //   // console.log('clicked');
+  //   const clickedGoal = this.props.goals.find( goal => {
+  //     return goal.id === goalID
+  //   })
+  // }
 
   renderGoals(){
     // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
@@ -21,34 +38,39 @@ class GoalListContainer extends Component {
       return (
         <Card textalign='center' height='150px' width='100px' key={goal.id}>
           <Card.Header><h3>{goal.title}</h3></Card.Header>
-          {/* <Link> */}
-          <Card.Content>
-            <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='75px' width='75px'/>
-            <Card.Meta>Difficulty: {goal.difficulty}</Card.Meta>
-            <Card.Description>CO2 Reduction: {goal.footprint}</Card.Description>
+          {/* <Card.Content onClick={this.handleShowGoal}> */}
+          <Card.Content >
+            <Link to='/goals/:id'>
+              <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='75px' width='75px'/>
+              <Card.Meta>Difficulty: {goal.difficulty}</Card.Meta>
+              <Card.Description>CO2 Reduction: {goal.footprint}</Card.Description>
+            </Link>
           </Card.Content>
-          {/* </Link> */}
           <Card.Content extra>
             <button>
               <Icon name='add' />
               Commit to This Goal
-            </button>
-          </Card.Content>
-        </Card>
+              </button>
+            </Card.Content>
+          </Card>
       )
     })
   }
 
   render() {
     console.log('logging the goal props', this.props.goals);
-    return (
-      <div className="ui container center aligned">
-        <h1>Goals To Reduce Your Carbon Footprint</h1>
-        <Card.Group itemsPerRow={2} className="ui container center aligned" style={{overflowY: 'scroll', height: '600px'}}>
-          {this.renderGoals()}
-        </Card.Group>
-      </div>
-    );
+    // return (
+    //   if(this.state.goalWasClicked = false){
+        return (
+          <div className="ui container center aligned">
+            <h1>Goals To Reduce Your Carbon Footprint</h1>
+            <Card.Group itemsPerRow={2} className="ui container center aligned" style={{overflowY: 'scroll', height: '600px'}}>
+              {this.renderGoals()}
+            </Card.Group>
+          </div>
+        );
+    //   }
+    // )
   }
 
 }

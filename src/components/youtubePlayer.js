@@ -3,6 +3,9 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import { Container } from 'semantic-ui-react'
 
+// user files
+import FootprintInfo from './footprintInfo'
+
 const YouTubePlayer = () => {
 
   const opts = {
@@ -21,6 +24,8 @@ const YouTubePlayer = () => {
         opts={opts}
         onReady={_onReady}
       />
+      <br /><br /><br />
+      <FootprintInfo />
     </div>
   )
 

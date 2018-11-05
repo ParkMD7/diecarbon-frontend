@@ -1,8 +1,8 @@
 // dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+import { Card, Icon, Image } from 'semantic-ui-react';
 // import YTSearch from 'youtube-api-search';
 // import { API_KEY } from '../config.js';
 

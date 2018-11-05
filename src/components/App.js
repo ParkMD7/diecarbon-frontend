@@ -11,6 +11,7 @@ import MainPage from './mainPage';
 import About from './about';
 import NavBar from '../containers/navbar';
 import Profile from '../containers/profile';
+import GoalShowPage from './goalShowPage'
 import { loginOrSignup } from '../actions/currentUser'
 
 class App extends Component {
@@ -51,11 +52,12 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavBar />
-            <br />
+            <br /><br /><br /><br />
             <Switch>
               <Route exact path="/" component={ () => <MainPage /> } />
               <Route exact path='/profile' component={ () => <Profile /> } />
               <Route exact path='/about' component={ () => <About /> } />
+              <Route exact path='/goals/:id' component={ () => <GoalShowPage /> } />
               <Route exact path='/signup' component={ () => <SignUp /> } />
               <Route exact path='/login' render={ () => <Login handleLogin={this.handleLogin} /> } />
             </Switch>
