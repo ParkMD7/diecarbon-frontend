@@ -17,7 +17,7 @@ const MainPage = () => {
           </Grid.Column>
 
 
-          <Grid.Column width={8} className="ui container center aligned">
+          <Grid.Column width={8} className="ui container center aligned" style={{overflowY: 'scroll', height: '900px'}}>
             <GoalListContainer />
           </Grid.Column>
 

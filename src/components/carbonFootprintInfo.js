@@ -2,7 +2,7 @@
 import React from 'react';
 import { Container } from 'semantic-ui-react';
 
-const FootprintInfo = () => {
+const CarbonFootprintInfo = () => {
   return (
     <div>
       <h2>How To Reduce Your Carbon Footprint</h2>
@@ -41,4 +41,4 @@ const FootprintInfo = () => {
 }
 
 
-export default FootprintInfo;
+export default CarbonFootprintInfo;

@@ -9,7 +9,7 @@ import { signout } from '../actions/currentUser'
 
 const NavBar = () => {
   return(
-  <Menu vertical fixed='top' size='massive'>
+  <Menu vertical size='big' justified>
     <Dropdown item text='Navigate To: '>
       <Dropdown.Menu>
 

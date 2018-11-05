@@ -44,7 +44,7 @@ class GoalListContainer extends Component {
         return (
           <div className="ui container center aligned">
             <h1>Goals To Reduce Your Carbon Footprint</h1>
-            <Card.Group itemsPerRow={2} className="ui container center aligned" style={{overflowY: 'scroll', height: '600px'}}>
+            <Card.Group itemsPerRow={3} className="ui container center aligned" >
               {this.renderGoals()}
             </Card.Group>
           </div>

@@ -8,10 +8,10 @@ import SignUp from '../forms/signup';
 import Login from '../forms/login';
 import MainPage from './mainPage';
 import About from './about';
-import NavBar from '../containers/navbar';
+import NavBarContainer from '../containers/navbarContainer';
 import Profile from '../containers/profile';
-import GoalShowPage from './goalShowPage'
-import { loginOrSignup } from '../actions/currentUser'
+import GoalShowPage from './goalShowPage';
+import { loginOrSignup } from '../actions/currentUser';
 
 class App extends Component {
 
@@ -50,8 +50,8 @@ class App extends Component {
     console.log('%c APP Props: ', 'color: firebrick', this.props);
     return (
           <div>
-            <NavBar />
-            <br /><br /><br /><br />
+            <NavBarContainer />
+            <br /><br /><br /><br /><br /><br /><br />
             <Switch>
               <Route exact path="/" component={ () => <MainPage /> } />
               <Route exact path='/profile' component={ () => <Profile /> } />
