@@ -1,43 +1,37 @@
 // dependencies
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Dropdown, Menu, Icon } from 'semantic-ui-react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Dropdown, Menu, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 // user files
-import { signout } from '../actions/currentUser'
+import { signout } from '../actions/currentUser';
 
 const NavBar = () => {
   return(
-  <Menu vertical size='big' justified>
-    <Dropdown item text='Navigate To: '>
+  <Menu vertical size='huge' justified="true">
+    <Dropdown item fluid text='Navigate To: '>
       <Dropdown.Menu>
 
-        <Link to='/'>
-          <Dropdown.Item>
-            <Icon name='recycle' circular fitted color='olive' size='big' aria-label='goals'/>
-          </Dropdown.Item>
-        </Link>
+        <Dropdown.Item as={ Link } name='profile' to='/'>
+          <Icon name='recycle' circular fitted color='black' size='large' aria-label='goals'/>
+          Main Page
+        </Dropdown.Item>
 
-        <Link to='/profile'>
-          <Dropdown.Item>
-            <Icon name='user' circular fitted color='olive' size='big' aria-label='profile'/>
-          </Dropdown.Item>
-        </Link>
+        <Dropdown.Item as={ Link } name='profile' to='/profile'>
+          <Icon name='user' circular fitted color='black' size='large' aria-label='profile'/>
+          Profile
+        </Dropdown.Item>
 
-        <Link to='/about'>
-          <Dropdown.Item>
-            <Icon name='info circle' circular fitted color='olive' size='big' aria-label='about'/>
-          </Dropdown.Item>
-        </Link>
+        <Dropdown.Item as={ Link } name='about' to='/about'>
+          <Icon name='info circle' circular fitted color='black' size='large' aria-label='about'/>
+          About
+        </Dropdown.Item>
 
-        <Link to='/login'>
-          <Dropdown.Item
-            name='signOut'
-            onClick={() => this.props.signout()}>
-            <Icon name='sign out' circular fitted color='olive' size='big' aria-label='sign out'/>
-          </Dropdown.Item>
-        </Link>
+        <Dropdown.Item as={ Link } name='signout' to='/signout'>
+          <Icon name='sign out' circular fitted color='black' size='large' aria-label='sign out'/>
+          Sign Out
+        </Dropdown.Item>
 
       </Dropdown.Menu>
     </Dropdown>

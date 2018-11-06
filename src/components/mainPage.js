@@ -6,6 +6,7 @@ import { Grid } from 'semantic-ui-react';
 // import GoalCategoryContainer from '../containers/goalCategoryContainer';
 import GoalListContainer from '../containers/goalListContainer';
 import YouTubePlayer from './youtubePlayer';
+import withAuth from '../hocs/withAuth';
 
 const MainPage = () => {
 
@@ -26,4 +27,4 @@ const MainPage = () => {
   }
 
 
-export default MainPage;
+export default withAuth(MainPage);

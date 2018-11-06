@@ -1,6 +1,11 @@
+// dependencies
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import { Container, Header, Input, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Container, Header, Input, Button, Segment, Message, Form } from 'semantic-ui-react';
+
+// user files
+import { loginUser } from '../actions/loginUser'
 
 class Login extends Component {
   state = {
@@ -8,31 +13,59 @@ class Login extends Component {
     password: ''
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+  handleChange = (e, semanticInputData) => {
+    // semanticInputData.name -> 'username'
+    this.setState({ [semanticInputData.name]: semanticInputData.value })
+  }
+
+  handleLoginSubmit = () => { //semantic forms preventDefault for you
+    this.props.loginUser(this.state.username, this.state.password) //comes from mapDispatchToProps
+    this.setState({ username: '', password: '' }) //reset form to initial state
   }
 
   render() {
-    return (
-      <Container text textAlign='center'>
-        <Header>di(e)carbon</Header>
-        <form onSubmit={event => this.props.handleLogin(event, this.state)}>
-          <Header>Log In</Header>
-          <Input size='large' fluid name='username' value={this.state.username} type='text' placeholder="Username" onChange={this.handleChange} /><br/>
-          <Input size='large' fluid name='password' value={this.state.password} type='password' placeholder="Password" onChange={this.handleChange} /><br/>
-          <Button.Group fluid>
-            <Button basic color='blue' type='submit'>Log In</Button>
-            <Button basic color='blue' onClick={event => event.preventDefault()}>
-              <Link to='/signup'>Sign Up</Link>
-            </Button>
-          </Button.Group>
-        </form>
-      </Container>
+    console.log('%c PROPS IN LOGINFORM ', 'color: goldenrod', this.props)
+    return this.props.loggedIn ? ( <Redirect to="/profile" /> ) : (
+      <Segment>
+        <Form
+          onSubmit={this.handleLoginSubmit}
+          size="mini"
+          key="mini"
+          loading={this.props.authenticatingUser}
+          error={this.props.failedLogin}
+        >
+          <Message error header={this.props.failedLogin ? this.props.error : null} />
+          <Form.Group widths="equal">
+            <Form.Input
+              label="username"
+              placeholder="username"
+              name="username"
+              onChange={this.handleChange}
+              value={this.state.username}
+            />
+            <Form.Input
+              type="password"
+              label="password"
+              placeholder="password"
+              name="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+          </Form.Group>
+          <Button type="submit">Login</Button>
+        </Form>
+      </Segment>
     );
   }
 
 }
 
-export default Login;
+
+const mapStateToProps = ({ user: { authenticatingUser, failedLogin, error, loggedIn } }) => ({
+  authenticatingUser,
+  failedLogin,
+  error,
+  loggedIn
+})
+
+export default withRouter(connect(mapStateToProps, { loginUser })(Login))
