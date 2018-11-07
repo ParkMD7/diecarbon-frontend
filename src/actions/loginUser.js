@@ -5,7 +5,6 @@ export const loginUser = (username, password) => {
   return (dispatch) => {
     // dispatch({ type: 'AUTHENTICATING_USER' })
     dispatch(authenticatingUser())
-    // fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/login`)
     fetch(`${ROOT_URL}/login`, {
       method: 'POST',
       headers: {
