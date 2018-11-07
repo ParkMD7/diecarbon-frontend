@@ -22,7 +22,7 @@ class NavBarContainer extends Component {
           </Link>
         </Menu.Item>
 
-        <Menu.Item>
+        <Menu.Item >
           <NavBar />
         </Menu.Item>
 

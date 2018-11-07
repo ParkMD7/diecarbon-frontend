@@ -17,8 +17,8 @@ class NavBar extends Component {
 
   render(){
     return(
-    <Menu vertical size='huge' justified="true">
-      <Dropdown item fluid text='Navigate To: '>
+    <Menu vertical size='huge' borderless style={{width: '350px'}}>
+      <Dropdown item fluid text='Navigate To: ' style={{width: '200px'}}>
         <Dropdown.Menu>
 
           <Dropdown.Item as={ Link } name='profile' to='/'>

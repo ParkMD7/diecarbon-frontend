@@ -1,6 +1,8 @@
 // dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import { Container, Header, Card, Button, Confirm, Image, Grid, Statistic, Icon } from 'semantic-ui-react';
 
 // user files
@@ -12,6 +14,41 @@ class Profile extends Component {
 
   formatName = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1);
+  }
+
+  calculateTotalCarbonReduced = () => {
+    let totalCarbonReduced = this.props.goals.reduce((sum, goal) => sum + goal.footprint, 0)
+    return totalCarbonReduced
+  }
+
+  calculateTotalCarbonFootprint = () => {
+    let total
+    total = (this.props.footprint + this.calculateTotalCarbonReduced)
+    return total
+  }
+
+  renderCommittedGoals(){
+    // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
+    return _.map(this.props.goals, goal => {
+      return (
+        <Card textalign='center' height='150px' width='100px' key={goal.id}>
+          <Link to={`/goals/${goal.id}`}>
+            <Card.Header><h3>{goal.title}</h3></Card.Header>
+            <Card.Content >
+              <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='75px' width='75px'/>
+              <Card.Meta>Difficulty: {goal.difficulty}</Card.Meta>
+              <Card.Description>CO2 Reduction: {goal.footprint}</Card.Description>
+            </Card.Content>
+          </Link>
+          <Card.Content extra>
+            <Button color='black' fluid onClick={() => this.handleCommitToGoal(goal)}>
+              <Icon name='add' />
+              Commit to This Goal
+            </Button>
+          </Card.Content>
+        </Card>
+      )
+    })
   }
 
   render() {
@@ -29,7 +66,7 @@ class Profile extends Component {
               <Statistic>
                 <Statistic.Value>
                   <Icon name='recycle' />
-                  {this.props.goals.length}
+                  {this.calculateTotalCarbonReduced()}
                 </Statistic.Value>
                 <Statistic.Label>Carbon Reduced</Statistic.Label>
               </Statistic>
@@ -54,7 +91,6 @@ class Profile extends Component {
               </Card.Content>
             </Card>
 
-
           </Grid.Column>
           <Grid.Column width={8} textAlign='center'>
             <ImpactSummary />
@@ -63,6 +99,11 @@ class Profile extends Component {
 
         <Grid.Row>
           <h2>{this.formatName(this.props.name)}'s Goals</h2>
+          <Grid.Column width={16}>
+            <Card.Group itemsPerRow={6} className="ui container center aligned" >
+              {this.renderCommittedGoals()}
+            </Card.Group>
+          </Grid.Column>
         </Grid.Row>
       </Grid>
 

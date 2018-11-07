@@ -1,15 +1,8 @@
 // user files
-import { LOGIN_OR_SIGN_UP } from '../constants';
+// import { LOGIN_OR_SIGN_UP } from '../constants';
 import { SIGNOUT } from '../constants';
 import { EDIT_USER } from '../constants';
 
-
-// export const loginOrSignup = (user) => {
-//   return {
-//     type: LOGIN_OR_SIGN_UP,
-//     payload: user
-//   }
-// };
 
 export const signout = () => {
   // debugger
