@@ -21,15 +21,10 @@ class Profile extends Component {
     return totalCarbonReduced
   }
 
-  calculateTotalCarbonFootprint = () => {
-    let total
-    total = (this.props.footprint + this.calculateTotalCarbonReduced)
-    return total
-  }
-
   renderCommittedGoals(){
     // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
     return _.map(this.props.goals, goal => {
+
       return (
         <Card textalign='center' height='150px' width='100px' key={goal.id}>
           <Link to={`/goals/${goal.id}`}>
@@ -100,7 +95,7 @@ class Profile extends Component {
         <Grid.Row>
           <h2>{this.formatName(this.props.name)}'s Goals</h2>
           <Grid.Column width={16}>
-            <Card.Group itemsPerRow={6} className="ui container center aligned" >
+            <Card.Group itemsPerRow={4} className="ui container center aligned" >
               {this.renderCommittedGoals()}
             </Card.Group>
           </Grid.Column>
@@ -112,12 +107,12 @@ class Profile extends Component {
 }
 
 
-const mapStateToProps = ({ user: { user: { name, username, location, picture, footprint, goals } } }) => ({
+// const mapStateToProps = ({ user: { user: { name, username, location, picture } }, user: { goals } }) => ({
+const mapStateToProps = ({ user: { user: { name, username, location, picture, goals } } }) => ({
   name,
   username,
   location,
   picture,
-  footprint,
   goals
 })
 

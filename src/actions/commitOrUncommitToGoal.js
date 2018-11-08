@@ -4,20 +4,15 @@ import axios from "axios"; // handles network requests & redux-promise on Index.
 import { COMMIT_TO_GOAL, ROOT_URL } from '../constants';
 
 
-export const commitToGoal = (userID) => {
-  // debugger
-  const request = axios.post(`${ROOT_URL}/goals/${id}`, {
-    users: userID
+export const commitToGoal = (userID, goal) => {
+  
+  const request = axios.patch(`${ROOT_URL}/goals/${goal.id}`, {
+      user: userID
   })
-  // .then(function (response) {
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // })
 
   return {
-    type: FETCH_GOAL,
-    payload: request // redux-promise middleware will auto resolve this promise whenever it sees this action
+    type: COMMIT_TO_GOAL,
+    payload: request,
+    goal: goal
   };
 }

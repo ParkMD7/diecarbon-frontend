@@ -50,7 +50,7 @@ class GoalShowPage extends Component {
           </Card.Content>
         </Card>
         <Link to='/'>
-          <button className='btn btn-danger'>Back</button>
+          <Button className='btn btn-danger'>Back</Button>
         </Link>
       </div>
     );

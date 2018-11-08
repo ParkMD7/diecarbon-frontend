@@ -1,13 +1,12 @@
 // user files
-import { SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, SIGNOUT, COMMIT_TO_GOAL  } from '../constants';
+import { SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, SIGNOUT  } from '../constants';
 
 const defaultState = {
   user: null,
   loggedIn: false,
   authenticatingUser: false,
   failedLogin: false,
-  error: null,
-  goals: []
+  error: null
 }
 
 const userReducer = (state=defaultState, action) => {
@@ -29,10 +28,6 @@ const userReducer = (state=defaultState, action) => {
         error: action.payload,
         authenticatingUser: false
       }
-
-    case COMMIT_TO_GOAL:
-    console.log('%c GoalReducer Action : ', 'color: orange', action.payload.data.id, action.payload.data)
-    return { ...state,  goals: [ ...state.goals, action.user ] }
 
     case SIGNOUT:
       // browserHistory.push('/')

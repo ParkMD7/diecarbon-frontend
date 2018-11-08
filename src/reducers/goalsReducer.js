@@ -2,7 +2,7 @@
 import _ from 'lodash' // allows me to change data type of fetched goals from an array to an object w/ key of ID
 
 // user files
-import { FETCH_GOALS, FETCH_GOAL } from '../constants';
+import { FETCH_GOALS, FETCH_GOAL, COMMIT_TO_GOAL } from '../constants';
 
 
 export default function(state={}, action){

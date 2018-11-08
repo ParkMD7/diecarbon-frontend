@@ -1,6 +1,11 @@
+// dependencies
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import { Container, Header, Input, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Container, Header, Input, Button, Segment, Message, Form } from 'semantic-ui-react';
+
+// user files
+import { loginUser } from '../actions/loginUser'
 
 class Login extends Component {
   state = {
@@ -15,7 +20,8 @@ class Login extends Component {
   }
 
   render() {
-    return (
+    console.log('%c PROPS IN LOGINFORM ', 'color: goldenrod', this.props)
+    return this.props.loggedIn ? ( <Redirect to="/" /> ) : (
       <Container text textAlign='center'>
         <Header>di(e)carbon</Header>
         <form onSubmit={event => this.props.handleLogin(event, this.state)}>
@@ -35,4 +41,11 @@ class Login extends Component {
 
 }
 
-export default Login;
+const mapStateToProps = ({ user: { authenticatingUser, failedLogin, error, loggedIn } }) => ({
+  authenticatingUser,
+  failedLogin,
+  error,
+  loggedIn
+})
+
+export default withRouter(connect(mapStateToProps, { loginUser })(Login))

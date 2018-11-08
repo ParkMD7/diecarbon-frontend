@@ -3,44 +3,43 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import { Card, Icon, Image, Button } from 'semantic-ui-react';
+import { Card, Icon, Image, Button, Grid } from 'semantic-ui-react';
 
 // user files
 import { fetchGoals } from '../actions/fetchGoals';
+import { commitToGoal } from '../actions/commitOrUncommitToGoal';
+import SearchBar from './searchbar';
+import GoalCheckboxFilter from './goalCheckboxFilter';
 
 
 class GoalListContainer extends Component {
   state = {
-    goalIsCommitted: false
+    term: '',
+    input: '',
   }
+  // this.setState({
+  //   goalIsCommitted: true
+  // })
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchGoals()
   }
 
   handleCommitToGoal = (goal) => {
-    fetch(`http://localhost:3000/api/v1/goals/${goal.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user: this.props.user.id
-      })
-    })
+    const userID = this.props.user.id.toString()
+    this.props.commitToGoal(userID, goal)
+  }
+
+  handleSortBySearchFilter = (userSearchTerm) => {
     this.setState({
-      goalIsCommitted: true
+      term: userSearchTerm
     })
-    console.log('click', goal);
   }
 
   renderGoals(){
-    // if(this.props.goals.users.includes(this.props.user)){
-    //
-    // }
     // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
     return _.map(this.props.goals, goal => {
+      if(goal.title.toLowerCase().includes(this.state.term) || goal.category.toLowerCase().includes(this.state.term)){
       return (
         <Card textalign='center' height='150px' width='100px' key={goal.id}>
           <Link to={`/goals/${goal.id}`}>
@@ -59,6 +58,7 @@ class GoalListContainer extends Component {
           </Card.Content>
         </Card>
       )
+      }
     })
   }
 
@@ -67,6 +67,22 @@ class GoalListContainer extends Component {
         return (
           <div className="ui container center aligned">
             <h1>Goals To Reduce Your Carbon Footprint</h1>
+            <br/>
+            <Grid divided='vertically' centered>
+              <Grid.Row columns={2} centered>
+
+                <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
+                  <GoalCheckboxFilter />
+                </Grid.Column>
+
+                <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
+                  <h4>Filter Goals By Title or Category</h4>
+                  <SearchBar search={this.handleSortBySearchFilter}/>
+                </Grid.Column>
+
+              </Grid.Row>
+            </Grid>
+            <br/>
             <Card.Group itemsPerRow={3} className="ui container center aligned" >
               {this.renderGoals()}
             </Card.Group>
@@ -81,4 +97,4 @@ const mapStateToProps = (state) => ({
   user: state.user.user
 })
 
-export default withRouter(connect(mapStateToProps, { fetchGoals })(GoalListContainer));
+export default withRouter(connect(mapStateToProps, { fetchGoals, commitToGoal })(GoalListContainer));

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import { Container, Header, Input, Button, Segment, Message, Form } from 'semantic-ui-react';
+import { Grid, Card, Button, Message, Form } from 'semantic-ui-react';
 
 // user files
 import { loginUser } from '../actions/loginUser'
@@ -25,36 +25,27 @@ class Login extends Component {
 
   render() {
     console.log('%c PROPS IN LOGINFORM ', 'color: goldenrod', this.props)
-    return this.props.loggedIn ? ( <Redirect to="/profile" /> ) : (
-      <Segment>
-        <Form
-          onSubmit={this.handleLoginSubmit}
-          size="mini"
-          key="mini"
-          loading={this.props.authenticatingUser}
-          error={this.props.failedLogin}
-        >
-          <Message error header={this.props.failedLogin ? this.props.error : null} />
-          <Form.Group widths="equal">
-            <Form.Input
-              label="username"
-              placeholder="username"
-              name="username"
-              onChange={this.handleChange}
-              value={this.state.username}
-            />
-            <Form.Input
-              type="password"
-              label="password"
-              placeholder="password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
-          </Form.Group>
-          <Button type="submit">Login</Button>
-        </Form>
-      </Segment>
+    return this.props.loggedIn ? ( <Redirect to="/" /> ) : (
+      <Grid>
+        <Grid.Column width={16} textAlign='center'>
+          <Card centered textalign='center' style={{height: '350px', width: '500px'}}>
+            <Card.Content centered='true' textalign='center'>
+              <Card.Header><h2>log in</h2></Card.Header>
+              <br />
+              <Form size="mini" key="mini" onSubmit={this.handleLoginSubmit} loading={this.props.authenticatingUser} error={this.props.failedLogin} >
+                <Message error header={this.props.failedLogin ? this.props.error : null} />
+                <Form.Input label="username" placeholder="username" name="username" onChange={this.handleChange} value={this.state.username} />
+                <Form.Input type="password" label="password" placeholder="password" name="password" onChange={this.handleChange} value={this.state.password} />
+                <Button basic color='blue' type='submit' style={{height: '35px', width: '150px'}}>Log In</Button>
+                <h4>create a new account</h4>
+                <Button basic color='blue' style={{height: '35px', width: '150px'}} onClick={event => event.preventDefault()}>
+                  <Link to='/signup'>Sign Up</Link>
+                </Button>
+              </Form>
+            </Card.Content>
+          </Card>
+        </Grid.Column>
+      </Grid>
     );
   }
 

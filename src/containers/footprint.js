@@ -11,6 +11,18 @@ class Footprint extends Component {
     return name.charAt(0).toUpperCase() + name.slice(1);
   }
 
+  calculateTotalCarbonReduced = () => {
+    let totalCarbonReduced = this.props.user.user.goals.reduce((sum, goal) => sum + goal.footprint, 0)
+    return totalCarbonReduced
+  }
+
+  calculateTotalCarbonFootprint = () => {
+    let total
+    let carbonReduced = this.calculateTotalCarbonReduced()
+    total = (40000 + carbonReduced)
+    return total
+  }
+
   render() {
     console.log('%c GoalShow Props: ', 'color: pink', this.props);
 
@@ -25,7 +37,7 @@ class Footprint extends Component {
 
     return (
       <div>
-        <h2 style={{color: 'red'}}>{this.formatName(this.props.user.user.name)}'s Current Footprint: {this.props.user.user.footprint} lbs/yr</h2>
+        <h2 style={{color: 'red'}}>{this.formatName(this.props.user.user.name)}'s Current Footprint: {this.calculateTotalCarbonFootprint()} lbs/yr</h2>
       </div>
     );
   }
