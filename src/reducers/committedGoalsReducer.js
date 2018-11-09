@@ -7,7 +7,7 @@ export default function(state={}, action){
 
     case COMMIT_TO_GOAL:
       console.log('%c GoalReducer Action : ', 'color: orange', action.goal)
-      debugger
+      // debugger
       return { ...state, [action.goal.id]:action.goal }
 
     default:

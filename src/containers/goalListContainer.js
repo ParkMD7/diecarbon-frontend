@@ -8,7 +8,7 @@ import { Card, Icon, Image, Button, Grid } from 'semantic-ui-react';
 // user files
 import { fetchGoals } from '../actions/fetchGoals';
 import { commitToGoal } from '../actions/commitOrUncommitToGoal';
-import SearchBar from './searchbar';
+import SearchBar from '../components/searchbar';
 import GoalCheckboxFilter from './goalCheckboxFilter';
 
 
@@ -17,9 +17,6 @@ class GoalListContainer extends Component {
     term: '',
     input: '',
   }
-  // this.setState({
-  //   goalIsCommitted: true
-  // })
 
   componentWillMount() {
     this.props.fetchGoals()
@@ -30,16 +27,34 @@ class GoalListContainer extends Component {
     this.props.commitToGoal(userID, goal)
   }
 
+  // handleUncommitFromGoal = (goal) => {
+  //   const userID = this.props.user.id.toString()
+  //   this.props.unCommitToGoal(userID, goal)
+  // }
+
   handleSortBySearchFilter = (userSearchTerm) => {
     this.setState({
       term: userSearchTerm
     })
   }
 
+  handleSortByDifficultyInput = (difficulty) => {
+    this.setState({
+      input: difficulty
+    }, ()=> console.log(this.state.input));
+  };
+
   renderGoals(){
     // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
     return _.map(this.props.goals, goal => {
-      if(goal.title.toLowerCase().includes(this.state.term) || goal.category.toLowerCase().includes(this.state.term)){
+      // conditionally render based on user's search input & filter
+      if(goal.difficulty === this.state.input && goal.title.toLowerCase().includes(this.state.term) || goal.category.toLowerCase().includes(this.state.term)){
+
+      // conditionally render button for goals - if the user's goals contains a mapped goal then render the uncommit button (render commit button if not)
+      let usersAlreadyCommittedToGoal = this.props.user.goals.find( userGoal => {
+        return userGoal.id === goal.id
+        })
+
       return (
         <Card textalign='center' height='150px' width='100px' key={goal.id}>
           <Link to={`/goals/${goal.id}`}>
@@ -51,10 +66,17 @@ class GoalListContainer extends Component {
             </Card.Content>
           </Link>
           <Card.Content extra>
-            <Button color='black' fluid onClick={() => this.handleCommitToGoal(goal)}>
-              <Icon name='add' />
-              Commit to This Goal
+            {!usersAlreadyCommittedToGoal ?
+              <Button color='black' fluid onClick={() => this.handleCommitToGoal(goal)}>
+                <Icon name='add' />
+                Commit to This Goal
+              </Button>
+            :
+            <Button color='red' fluid onClick={() => this.handleUncommitFromGoal(goal)}>
+              <Icon name='minus' />
+              Uncommit From This Goal
             </Button>
+            }
           </Card.Content>
         </Card>
       )
@@ -72,7 +94,7 @@ class GoalListContainer extends Component {
               <Grid.Row columns={2} centered>
 
                 <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
-                  <GoalCheckboxFilter />
+                  <GoalCheckboxFilter filterInput={this.handleSortByDifficultyInput}/>
                 </Grid.Column>
 
                 <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>

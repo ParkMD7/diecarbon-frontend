@@ -21,6 +21,11 @@ class Profile extends Component {
     return totalCarbonReduced
   }
 
+  // handleUncommitFromGoal = (goal) => {
+  //   const userID = this.props.user.id.toString()
+  //   this.props.unCommitToGoal(userID, goal)
+  // }
+
   renderCommittedGoals(){
     // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
     return _.map(this.props.goals, goal => {
@@ -36,9 +41,9 @@ class Profile extends Component {
             </Card.Content>
           </Link>
           <Card.Content extra>
-            <Button color='black' fluid onClick={() => this.handleCommitToGoal(goal)}>
-              <Icon name='add' />
-              Commit to This Goal
+            <Button color='red' fluid onClick={() => this.handleUncommitFromGoal(goal)}>
+              <Icon name='minus' />
+              Uncommit From This Goal
             </Button>
           </Card.Content>
         </Card>
