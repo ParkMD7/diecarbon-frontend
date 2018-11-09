@@ -1,38 +1,43 @@
-import React, { Component } from 'react'
-import { Form, Checkbox } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Form, Checkbox } from 'semantic-ui-react';
 
 export default class GoalCheckboxFilter extends Component {
-  state = {}
-  handleChange = (e, { value }) => this.setState({ value })
+
+
+  handleChange = (event) => {
+    const difficulty = event.target.innerText
+    return this.props.filterInput(difficulty)
+  }
 
   render() {
     return (
-      <Form>
+      <Form centered="true">
         <Form.Field>
           <h4>Filter Goals By Difficulty</h4>
         </Form.Field>
         <Form.Group >
           <Form.Field>
-            <Checkbox radio label='Easy' name='checkboxRadioGroup' value='Easy'
-              checked={this.state.value === 'Easy'}
+            <Checkbox control='input' label='All' name='checkbox' value='All'
               onChange={this.handleChange}
             />
           </Form.Field>
           <Form.Field>
-            <Checkbox radio label='Medium' name='checkboxRadioGroup' value='Medium'
-              checked={this.state.value === 'Medium'}
+            <Checkbox control='input' label='Easy' name='checkbox' value='Easy'
               onChange={this.handleChange}
             />
           </Form.Field>
           <Form.Field>
-            <Checkbox radio label='Hard' name='checkboxRadioGroup' value='Hard'
-              checked={this.state.value === 'Hard'}
+            <Checkbox control='input' label='Medium' name='checkbox' value='Medium'
               onChange={this.handleChange}
             />
           </Form.Field>
           <Form.Field>
-            <Checkbox radio label='Impossible' name='checkboxRadioGroup' value='Impossible'
-              checked={this.state.value === 'Impossible'}
+            <Checkbox control='input' label='Hard' name='checkbox' value='Hard'
+              onChange={this.handleChange}
+            />
+          </Form.Field>
+          <Form.Field>
+            <Checkbox control='input' label='Impossible' name='checkbox' value='Impossible'
               onChange={this.handleChange}
             />
           </Form.Field>

@@ -1,9 +1,7 @@
 // dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-// user files
-//import { setCurrentUser } from '../actions/loginUser';
+import { Grid } from 'semantic-ui-react';
 
 class Footprint extends Component {
 
@@ -36,9 +34,20 @@ class Footprint extends Component {
     }
 
     return (
-      <div>
-        <h2 style={{color: 'red'}}>{this.formatName(this.props.user.user.name)}'s Current Footprint: {this.calculateTotalCarbonFootprint()} lbs/yr</h2>
-      </div>
+      <Grid divided='vertically' centered>
+        <Grid.Row columns={2}>
+          <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
+            <h3 style={{color: 'black'}}>{this.formatName(this.props.user.user.name)}'s Current Footprint: </h3>
+          </Grid.Column>
+          <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
+            {this.calculateTotalCarbonFootprint() >= 40000 ?
+              <h2 style={{color: 'red'}}>{this.calculateTotalCarbonFootprint()} lbs/yr</h2>
+            :
+            <h2 style={{color: 'green'}}>{this.calculateTotalCarbonFootprint()} lbs/yr</h2>
+            }
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 
