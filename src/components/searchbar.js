@@ -1,27 +1,29 @@
 // dependencies
-import React from "react";
-import { Input, Button } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Input, Button, Form } from 'semantic-ui-react';
 
-const SearchBar = () => {
+class SearchBar extends Component {
 
-  const onInputChange = (event) => {
-    props.search(event.target.value)
+  onInputChange = (event) => {
+    this.props.search(event.target.value)
   }
 
-  const onFormSubmit = (event) => {
+  onFormSubmit = (event) => {
     event.preventDefault();
   }
 
+  render(){
     return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
+      <Form onSubmit={this.onFormSubmit} className="input-group">
         <Input
           placeholder="Filter Goals"
           size='medium'
           onChange={this.onInputChange}
           style={{width: '300px'}}
         />
-      </form>
+      </Form>
     );
+    }
 }
 
 
