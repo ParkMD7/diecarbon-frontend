@@ -13,6 +13,14 @@ class Login extends Component {
     password: ''
   }
 
+  background = require('../images/background.jpg')
+  sectionStyle = {
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'noRepeat',
+      backgroundImage: 'url(' + this.background + ')'
+  };
+
   handleChange = (e, semanticInputData) => {
     // semanticInputData.name -> 'username'
     this.setState({ [semanticInputData.name]: semanticInputData.value })
@@ -26,26 +34,29 @@ class Login extends Component {
   render() {
     console.log('%c PROPS IN LOGINFORM ', 'color: goldenrod', this.props)
     return this.props.loggedIn ? ( <Redirect to="/" /> ) : (
-      <Grid>
-        <Grid.Column width={16} textAlign='center'>
-          <Card centered textalign='center' style={{height: '350px', width: '500px'}}>
-            <Card.Content centered='true' textalign='center'>
-              <Card.Header><h2>log in</h2></Card.Header>
-              <br />
-              <Form size="mini" key="mini" onSubmit={this.handleLoginSubmit} loading={this.props.authenticatingUser} error={this.props.failedLogin} >
-                <Message error header={this.props.failedLogin ? this.props.error : null} />
-                <Form.Input label="username" placeholder="username" name="username" onChange={this.handleChange} value={this.state.username} />
-                <Form.Input type="password" label="password" placeholder="password" name="password" onChange={this.handleChange} value={this.state.password} />
-                <Button basic color='blue' type='submit' style={{height: '35px', width: '150px'}}>Log In</Button>
-                <h4>create a new account</h4>
-                <Button basic color='blue' style={{height: '35px', width: '150px'}} onClick={event => event.preventDefault()}>
-                  <Link to='/signup'>Sign Up</Link>
-                </Button>
-              </Form>
-            </Card.Content>
-          </Card>
-        </Grid.Column>
-      </Grid>
+      <div style={ this.sectionStyle }>
+        <br /><br /><br /><br /><br /><br />
+        <Grid>
+          <Grid.Column width={16} textAlign='center' >
+            <Card centered textalign='center' style={{height: '350px', width: '500px', 'background-color': 'lightslategrey', opacity:'0.8'}} >
+              <Card.Content centered='true' textalign='center'>
+                <Card.Header><h2 style={{color: 'red'}}>log in</h2></Card.Header>
+                <br />
+                <Form size="mini" key="mini" onSubmit={this.handleLoginSubmit} loading={this.props.authenticatingUser} error={this.props.failedLogin} >
+                  <Message error header={this.props.failedLogin ? this.props.error : null} />
+                  <Form.Input label="username" placeholder="username" name="username" onChange={this.handleChange} value={this.state.username} />
+                  <Form.Input type="password" label="password" placeholder="password" name="password" onChange={this.handleChange} value={this.state.password} />
+                  <Button basic color='blue' type='submit' style={{height: '35px', width: '150px'}}>Log In</Button>
+                  <h4>create a new account</h4>
+                  <Button basic color='blue' style={{height: '35px', width: '150px'}} onClick={event => event.preventDefault()}>
+                    <Link to='/signup'>Sign Up</Link>
+                  </Button>
+                </Form>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 

@@ -5,6 +5,7 @@ export const ROOT_URL = 'http://localhost:3000/api/v1';
 export const FETCH_GOALS = 'FETCH_GOALS';
 export const FETCH_GOAL = 'FETCH_GOAL';
 export const FETCH_VIDEO = "FETCH_VIDEO";
+export const FETCH_USER_GOALS = 'FETCH_USER_GOALS';
 
 // User Action Related Constants
 //export const LOGIN_OR_SIGN_UP = 'LOGIN_OR_SIGN_UP';

@@ -27,23 +27,20 @@ class Footprint extends Component {
     if(!this.props.user.loggedIn){
       return (
         <div>
-          <h2 style={{color: 'red'}}>(-40,000 lbs/yr)</h2>
           <h4>The Average Person's Carbon Footprint</h4>
+          <h2 style={{color: 'red'}}>(-40,000 lbs/yr)</h2>
         </div>
       )
     }
 
     return (
-      <Grid divided='vertically' centered>
-        <Grid.Row columns={2}>
-          <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
-            <h3 style={{color: 'black'}}>{this.formatName(this.props.user.user.name)}'s Current Footprint: </h3>
-          </Grid.Column>
-          <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
+      <Grid divided='vertically' centered verticalAlign='middle'>
+        <Grid.Row columns={1}>
+          <Grid.Column width={16} textAlign='center' stretched verticalAlign='middle'>
             {this.calculateTotalCarbonFootprint() >= 40000 ?
-              <h2 style={{color: 'red'}}>{this.calculateTotalCarbonFootprint()} lbs/yr</h2>
+              <h2 style={{color: 'white'}}>{this.formatName(this.props.user.user.name)}'s Footprint: <span style={{color: 'red'}}>{this.calculateTotalCarbonFootprint()}</span> lbs/yr</h2>
             :
-            <h2 style={{color: 'green'}}>{this.calculateTotalCarbonFootprint()} lbs/yr</h2>
+            <h2 style={{color: 'white'}}>{this.formatName(this.props.user.user.name)}'s Footprint: <span style={{color: 'lightgreen'}}>{this.calculateTotalCarbonFootprint()}</span> lbs/yr</h2>
             }
           </Grid.Column>
         </Grid.Row>

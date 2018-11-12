@@ -20,7 +20,6 @@ class App extends Component {
     return (
           <div>
             <NavBarContainer />
-            <br /><br /><br /><br /><br /><br /><br />
             <Switch>
               <Route exact path="/" component={ () => <MainPage /> } />
               <Route exact path='/profile' component={ () => <Profile /> } />

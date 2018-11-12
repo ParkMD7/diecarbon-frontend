@@ -10,15 +10,15 @@ import Footprint from './footprint'
 class NavBarContainer extends Component {
   render(){
     return(
-      <Menu size='massive' fixed='top' fluid widths={3} style={{height: '75px'}}>
+      <Menu inverted size='massive' fixed='top' fluid widths={3} style={{height: '75px'}}>
 
         <Menu.Item>
           <Footprint />
         </Menu.Item>
 
         <Menu.Item>
-          <Link to='/' style={{color: 'black'}}>
-            <h1>di(e)carbon</h1>
+          <Link to='/' style={{color: 'white'}}>
+            <h1>di<span style={{color: 'red'}}>(e)</span>carbon</h1>
           </Link>
         </Menu.Item>
 

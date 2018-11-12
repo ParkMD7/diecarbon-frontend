@@ -10,7 +10,17 @@ import withAuth from '../hocs/withAuth';
 
 const MainPage = () => {
 
+  let background = require('../images/background.jpg')
+  const sectionStyle = {
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'noRepeat',
+      backgroundImage: 'url(' + background + ')'
+  };
+
     return (
+      <div style={ sectionStyle }>
+        <br /><br /><br /><br /><br /><br />
         <Grid>
 
           <Grid.Column width={8} className="ui container center aligned">
@@ -23,6 +33,7 @@ const MainPage = () => {
           </Grid.Column>
 
         </Grid>
+      </div>
     );
   }
 

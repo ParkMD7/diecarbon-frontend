@@ -57,13 +57,17 @@ class GoalListContainer extends Component {
         })
 
       return (
-        <Card textalign='center' height='150px' width='100px' key={goal.id}>
+        <Card textalign='center' height='150px' width='100px' style={{'background-color': 'lightgrey', opacity:'0.8'}} key={goal.id}>
           <Link to={`/goals/${goal.id}`}>
-            <Card.Header><h3>{goal.title}</h3></Card.Header>
+            <Card.Header style={{color:'black'}}><h3>{goal.title}</h3></Card.Header>
             <Card.Content >
               <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='75px' width='75px'/>
-              <Card.Meta>Difficulty: {goal.difficulty}</Card.Meta>
-              <Card.Description>CO2 Reduction: {goal.footprint}</Card.Description>
+              {goal.difficulty==='Easy' ?
+                <Card.Meta style={{color:'black'}}>Difficulty: <span style={{color: 'green'}}>{goal.difficulty}</span></Card.Meta>
+              :
+              <Card.Meta style={{color:'black'}}>Difficulty: <span style={{color: 'red'}}>{goal.difficulty}</span></Card.Meta>
+              }
+              <Card.Description style={{color:'black'}}>CO2 Reduction: <span style={{color: 'red'}}>{goal.footprint}</span></Card.Description>
             </Card.Content>
           </Link>
           <Card.Content extra>
@@ -88,28 +92,29 @@ class GoalListContainer extends Component {
   render() {
     console.log('%c GoalListContainer Props: ', 'color: green', this.props.goals, this.props.user);
         return (
-          <div className="ui container center aligned">
-            <h1>Goals To Reduce Your Carbon Footprint</h1>
-            <br/>
-            <Grid divided='vertically' centered>
-              <Grid.Row columns={2} centered>
+            <div className="ui container center aligned">
+              <h1>Goals To Reduce Your Carbon Footprint</h1>
+              <br/>
+              <Grid divided='vertically' centered>
+                {/* <Grid.Row columns={1} centered>
+                  <Grid.Column width={16} textAlign='center' stretched verticalAlign='middle'>
+                    <GoalCheckboxFilter filterInput={this.handleSortByDifficultyInput}/>
+                  </Grid.Column>
+                </Grid.Row> */}
 
-                <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
-                  <GoalCheckboxFilter filterInput={this.handleSortByDifficultyInput}/>
-                </Grid.Column>
+                <Grid.Row columns={1} centered>
+                  <Grid.Column width={16} textAlign='center' stretched verticalAlign='middle'>
+                    <h4>Filter Goals By Title or Category</h4>
+                    <SearchBar search={this.handleSortBySearchFilter}/>
+                  </Grid.Column>
+                </Grid.Row>
 
-                <Grid.Column width={8} textAlign='center' stretched verticalAlign='middle'>
-                  <h4>Filter Goals By Title or Category</h4>
-                  <SearchBar search={this.handleSortBySearchFilter}/>
-                </Grid.Column>
-
-              </Grid.Row>
-            </Grid>
-            <br/>
-            <Card.Group itemsPerRow={3} className="ui container center aligned" >
-              {this.renderGoals()}
-            </Card.Group>
-          </div>
+              </Grid>
+              <br/>
+              <Card.Group itemsPerRow={3} className="ui container center aligned" >
+                {this.renderGoals()}
+              </Card.Group>
+            </div>
         );
   }
 
