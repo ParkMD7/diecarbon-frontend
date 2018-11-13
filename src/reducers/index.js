@@ -12,7 +12,7 @@ import youtubeVideoReducer from './youtubeVideoReducer';
 const rootReducer = combineReducers({
   // currentUser: currentUser,
   user: userReducer,
-  committedGoals: committedGoalsReducer,
+  // committedGoals: committedGoalsReducer,
   form: formReducer,
   goals: goalsReducer,
   video: youtubeVideoReducer

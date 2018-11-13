@@ -40,8 +40,9 @@ class SignUp extends Component {
 
   background = require('../images/background.jpg')
   sectionStyle = {
-      backgroundPosition: 'center',
+      backgroundPosition: 'center center',
       backgroundSize: 'cover',
+      position: 'relative',
       backgroundRepeat: 'noRepeat',
       backgroundImage: 'url(' + this.background + ')'
   };

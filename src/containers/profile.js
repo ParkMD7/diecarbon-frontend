@@ -41,6 +41,7 @@ sectionStyle = {
 
 
   componentWillMount() {
+    // debugger
     const userID = this.props.id.toString()
     this.props.fetchUserGoals(userID)
   }
@@ -48,6 +49,7 @@ sectionStyle = {
   renderCommittedGoals(){
     // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
     return _.map(this.props.goals, goal => {
+      // return this.props.userCommittedGoals.map( goal => {
 
       return (
         <Card textalign='center' height='150px' width='100px' key={goal.id}>
@@ -71,9 +73,9 @@ sectionStyle = {
   }
 
   render() {
-    console.log('%c Profile Props: ', 'color: firebrick', this.background);
+    // debugger
+    // console.log('%c Profile Props: ', 'color: firebrick', this.background);
     return(
-
       <div style={ this.sectionStyle }>
         <br /><br /><br /><br /><br /><br />
         <Grid divided='vertically' centered>
@@ -147,7 +149,7 @@ sectionStyle = {
 
 
 
-const mapStateToProps = ({ user: { user: { name, username, location, picture, goals, id, email } } }, { user: fetchedUserGoals }) => ({
+const mapStateToProps = ({ user: { user: { name, username, location, picture, goals, id, email } } }, { user: userCommittedGoals }) => ({
   name,
   username,
   location,
@@ -155,7 +157,7 @@ const mapStateToProps = ({ user: { user: { name, username, location, picture, go
   id,
   email,
   goals,
-  fetchedUserGoals
+  userCommittedGoals
 })
 
 export default withAuth(connect(mapStateToProps, { fetchUserGoals })(Profile))

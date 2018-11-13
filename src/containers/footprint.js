@@ -10,7 +10,7 @@ class Footprint extends Component {
   }
 
   calculateTotalCarbonReduced = () => {
-    let totalCarbonReduced = this.props.user.user.goals.reduce((sum, goal) => sum + goal.footprint, 0)
+    let totalCarbonReduced = this.props.userCommittedGoals.reduce((sum, goal) => sum + goal.footprint, 0)
     return totalCarbonReduced
   }
 
@@ -22,9 +22,9 @@ class Footprint extends Component {
   }
 
   render() {
-    console.log('%c GoalShow Props: ', 'color: pink', this.props);
+    console.log('%c Footprint Props: ', 'color: orange', this.props);
 
-    if(!this.props.user.loggedIn){
+    if(!this.props.loggedIn){
       return (
         <div>
           <h4>The Average Person's Carbon Footprint</h4>
@@ -38,9 +38,9 @@ class Footprint extends Component {
         <Grid.Row columns={1}>
           <Grid.Column width={16} textAlign='center' stretched verticalAlign='middle'>
             {this.calculateTotalCarbonFootprint() >= 40000 ?
-              <h2 style={{color: 'white'}}>{this.formatName(this.props.user.user.name)}'s Footprint: <span style={{color: 'red'}}>{this.calculateTotalCarbonFootprint()}</span> lbs/yr</h2>
+              <h2 style={{color: 'white'}}>{this.formatName(this.props.user.name)}'s Footprint: <span style={{color: 'red'}}>{this.calculateTotalCarbonFootprint()}</span> lbs/yr</h2>
             :
-            <h2 style={{color: 'white'}}>{this.formatName(this.props.user.user.name)}'s Footprint: <span style={{color: 'lightgreen'}}>{this.calculateTotalCarbonFootprint()}</span> lbs/yr</h2>
+            <h2 style={{color: 'white'}}>{this.formatName(this.props.user.name)}'s Footprint: <span style={{color: 'lightgreen'}}>{this.calculateTotalCarbonFootprint()}</span> lbs/yr</h2>
             }
           </Grid.Column>
         </Grid.Row>
@@ -51,8 +51,10 @@ class Footprint extends Component {
 }
 
 
-const mapStateToProps = (state) => ({
-  user: state.user
+const mapStateToProps = ({ user }) => ({
+  user: user.user,
+  userCommittedGoals: user.userCommittedGoals,
+  loggedIn: user.loggedIn
 })
 
 export default connect(mapStateToProps)(Footprint);

@@ -53,11 +53,28 @@ class GoalListContainer extends Component {
     })
   }
 
-  handleSortByDifficultyInput = (difficulty) => {
-    this.setState({
-      input: difficulty
-    }, ()=> console.log(this.state.input));
-  };
+  // handleSortByDifficultyInput = (difficulty) => {
+  //   this.setState({
+  //     input: difficulty
+  //   }, ()=> console.log(this.state.input));
+  // };
+
+  determineIcon = (goal) => {
+    switch(goal.category){
+
+      case "Home":
+        return "home"
+
+      case "Travel":
+        return "plane"
+
+      case "Food":
+        return "food"
+
+      case "Goods":
+        return "shopping bag"
+    }
+  }
 
   renderGoals(){
     // since I turned the fetched API into an object in reducers/goalsReducer I am now using lodash to map over that object
@@ -66,17 +83,19 @@ class GoalListContainer extends Component {
       if(goal.difficulty === this.state.input && goal.title.toLowerCase().includes(this.state.term) || goal.category.toLowerCase().includes(this.state.term)){
 
       // conditionally render button for goals - if the user's goals contains a mapped goal then render the uncommit button (render commit button if not)
-      let usersAlreadyCommittedToGoal = this.props.user.goals.find( userGoal => {
+      let usersAlreadyCommittedToGoal = this.props.userCommittedGoals.find( userGoal => {
         return userGoal.id === goal.id
         })
 
       // { wasClicked } = this.state
       return (
-        <Card textalign='center' height='150px' width='100px' style={{'background-color': 'lightgrey', opacity:'0.8'}} key={goal.id}>
+        <Card textalign='center' height='150px' width='100px' style={{'background-color': 'lightgrey', opacity:'0.85'}} key={goal.id}>
           <Link to={`/goals/${goal.id}`}>
             <Card.Header style={{color:'black'}}><h3>{goal.title}</h3></Card.Header>
             <Card.Content >
-              <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='75px' width='75px'/>
+              <br />
+              <Icon name={this.determineIcon(goal)} size='huge' color='black'/>
+              <br /><br />
               {goal.difficulty==='Easy' ?
                 <Card.Meta style={{color:'black'}}>Difficulty: <span style={{color: 'green'}}>{goal.difficulty}</span></Card.Meta>
               :
@@ -129,6 +148,7 @@ class GoalListContainer extends Component {
               <Card.Group itemsPerRow={3} className="ui container center aligned" >
                 {this.renderGoals()}
               </Card.Group>
+
             </div>
         );
   }
@@ -137,7 +157,8 @@ class GoalListContainer extends Component {
 
 const mapStateToProps = (state) => ({
   goals: state.goals,
-  user: state.user.user
+  user: state.user.user,
+  userCommittedGoals: state.user.userCommittedGoals
 })
 
-export default withRouter(connect(mapStateToProps, { fetchGoals, commitToGoal, unCommitFromGoal, fetchUserGoals })(GoalListContainer));
+export default withRouter(connect(mapStateToProps, { fetchGoals, commitToGoal, unCommitFromGoal })(GoalListContainer));
