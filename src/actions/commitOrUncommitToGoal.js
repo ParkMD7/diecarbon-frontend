@@ -5,11 +5,9 @@ import { ROOT_URL, COMMIT_TO_GOAL, UNCOMMIT_FROM_GOAL } from '../constants';
 
 
 export const commitToGoal = (userID, goal) => {
-
   const request = axios.patch(`${ROOT_URL}/goals/${goal.id}`, {
       user: userID
   })
-
   return {
     type: COMMIT_TO_GOAL,
     payload: request,
@@ -17,14 +15,12 @@ export const commitToGoal = (userID, goal) => {
   };
 }
 
-export const unCommitFromGoal = (userID, goal) => {
 
-  const request = axios.delete(`${ROOT_URL}/goals/${goal.id}`, {
-      user: {
-        id: userID
-      }
+
+export const unCommitFromGoal = (userID, goal) => {
+  const request = axios.patch(`${ROOT_URL}/goals/${goal.id}/unsubsribe`, {
+    user: userID
   })
-  debugger
   return {
     type: UNCOMMIT_FROM_GOAL,
     payload: request,

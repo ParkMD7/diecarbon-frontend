@@ -23,6 +23,7 @@ class GoalListContainer extends Component {
   componentWillMount() {
     // const userID = this.props.user.id.toString()
     // this.props.fetchUserGoals(userID)
+    // i need to pass the userID to fetch
     this.props.fetchGoals()
   }
 
@@ -40,7 +41,6 @@ class GoalListContainer extends Component {
 
   handleUnCommitFromGoal = (goal) => {
     const userID = this.props.user.id.toString()
-    debugger
     this.props.unCommitFromGoal(userID, goal)
     this.setState({
       wasClicked: false
@@ -70,6 +70,7 @@ class GoalListContainer extends Component {
         return userGoal.id === goal.id
         })
 
+      // { wasClicked } = this.state
       return (
         <Card textalign='center' height='150px' width='100px' style={{'background-color': 'lightgrey', opacity:'0.8'}} key={goal.id}>
           <Link to={`/goals/${goal.id}`}>
@@ -86,12 +87,12 @@ class GoalListContainer extends Component {
           </Link>
           <Card.Content extra>
             {!usersAlreadyCommittedToGoal ?
-              <Button color='black' fluid onClick={() => this.handleCommitToGoal(goal)}>
+              <Button color='black' active={this.state.wasClicked} fluid onClick={() => this.handleCommitToGoal(goal)}>
                 <Icon name='add' />
                 Commit to This Goal
               </Button>
             :
-            <Button color='red' fluid onClick={() => this.handleUnCommitFromGoal(goal)}>
+            <Button color='red' active={!this.state.wasClicked} fluid onClick={() => this.handleUnCommitFromGoal(goal)}>
               <Icon name='minus' />
               Uncommit From This Goal
             </Button>

@@ -1,13 +1,13 @@
 // user files
-import { SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, SIGNOUT, FETCH_USER_GOALS, SEND_EMAIL  } from '../constants';
+import { SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, SIGNOUT, SEND_EMAIL  } from '../constants';
 
 const defaultState = {
   user: null,
   loggedIn: false,
   authenticatingUser: false,
   failedLogin: false,
-  error: null,
-  fetchedUserGoals: []
+  error: null
+  // fetchedUserGoals: []
 }
 
 const userReducer = (state=defaultState, action) => {
