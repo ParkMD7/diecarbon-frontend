@@ -36,10 +36,11 @@ class Login extends Component {
     return this.props.loggedIn ? ( <Redirect to="/" /> ) : (
       <div style={ this.sectionStyle }>
         <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
         <Grid>
           <Grid.Column width={16} textAlign='center' >
-            <Card centered textalign='center' style={{height: '350px', width: '500px', 'background-color': 'lightslategrey', opacity:'0.8'}} >
-              <Card.Content centered='true' textalign='center'>
+            <Card centered textalign='center' style={{height: 'auto', width: '500px', 'background-color': 'white', opacity:'0.6'}} >
+              <Card.Content centered='true' textalign='center' >
                 <Card.Header><h2 style={{color: 'red'}}>log in</h2></Card.Header>
                 <br />
                 <Form size="mini" key="mini" onSubmit={this.handleLoginSubmit} loading={this.props.authenticatingUser} error={this.props.failedLogin} >
@@ -56,6 +57,10 @@ class Login extends Component {
             </Card>
           </Grid.Column>
         </Grid>
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
       </div>
     );
   }

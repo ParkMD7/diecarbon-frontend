@@ -12,6 +12,7 @@ export const FETCH_USER_GOALS = 'FETCH_USER_GOALS';
 export const COMMIT_TO_GOAL = 'COMMIT_TO_GOAL';
 export const UNCOMMIT_FROM_GOAL = 'UNCOMMIT_FROM_GOAL';
 export const LOGIN_USER = 'LOGIN_USER';
+export const SIGNUP_USER = 'SIGNUP_USER';
 export const EDIT_USER = "EDIT_USER";
 export const SIGNOUT = 'SIGNOUT';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';

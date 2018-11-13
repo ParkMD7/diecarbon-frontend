@@ -4,7 +4,7 @@ import { Menu, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 // user files
-import NavBar from '../components/navbar'
+import NavBar from './navbar'
 import Footprint from './footprint'
 
 class NavBarContainer extends Component {

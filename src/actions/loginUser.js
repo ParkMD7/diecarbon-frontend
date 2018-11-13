@@ -1,5 +1,5 @@
 // user files
-import { LOGIN_USER, ROOT_URL } from '../constants';
+import { LOGIN_USER, ROOT_URL, SIGNUP_USER } from '../constants';
 
 export const loginUser = (username, password) => {
   return (dispatch) => {
@@ -30,6 +30,43 @@ export const loginUser = (username, password) => {
         console.log('%c INSIDE YE OLDE .THEN', 'color: navy')
         localStorage.setItem('jwt', JSONResponse.jwt)
         // dispatch({ type: 'SET_CURRENT_USER', payload: JSONResponse.user })
+        dispatch(setCurrentUser(JSONResponse.user))
+      })
+      .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+  }
+}
+
+export const signUpUser = (name, age, username, email, password, location, picture) => {
+  return (dispatch) => {
+    // dispatch({ type: 'AUTHENTICATING_USER' })
+    dispatch(authenticatingUser())
+    fetch(`${ROOT_URL}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+          name: name,
+          age: age,
+          username: username,
+          email: email,
+          password: password,
+          location: location,
+          picture: picture
+        }
+      })
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw response
+        }
+      })
+      .then(JSONResponse => {
+        localStorage.setItem('jwt', JSONResponse.jwt)
         dispatch(setCurrentUser(JSONResponse.user))
       })
       .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
