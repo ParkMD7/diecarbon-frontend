@@ -7,6 +7,7 @@ import { Card, Icon, Image, Button, Grid } from 'semantic-ui-react';
 
 // user files
 import { fetchGoals } from '../actions/fetchGoals';
+import { fetchUserGoals } from '../actions/fetchUserGoals';
 import { commitToGoal, unCommitFromGoal } from '../actions/commitOrUncommitToGoal';
 import SearchBar from '../components/searchbar';
 import GoalCheckboxFilter from './goalCheckboxFilter';
@@ -16,21 +17,34 @@ class GoalListContainer extends Component {
   state = {
     term: '',
     input: '',
+    wasClicked: false
   }
 
   componentWillMount() {
+    // const userID = this.props.user.id.toString()
+    // this.props.fetchUserGoals(userID)
     this.props.fetchGoals()
   }
 
   handleCommitToGoal = (goal) => {
     const userID = this.props.user.id.toString()
     this.props.commitToGoal(userID, goal)
+    this.setState({
+      wasClicked: true
+    })
+  }
+
+  handleChangeButton = () => {
+
   }
 
   handleUnCommitFromGoal = (goal) => {
     const userID = this.props.user.id.toString()
     debugger
     this.props.unCommitFromGoal(userID, goal)
+    this.setState({
+      wasClicked: false
+    })
   }
 
   handleSortBySearchFilter = (userSearchTerm) => {
@@ -125,4 +139,4 @@ const mapStateToProps = (state) => ({
   user: state.user.user
 })
 
-export default withRouter(connect(mapStateToProps, { fetchGoals, commitToGoal, unCommitFromGoal })(GoalListContainer));
+export default withRouter(connect(mapStateToProps, { fetchGoals, commitToGoal, unCommitFromGoal, fetchUserGoals })(GoalListContainer));

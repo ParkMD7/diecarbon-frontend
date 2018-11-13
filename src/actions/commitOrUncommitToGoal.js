@@ -20,7 +20,9 @@ export const commitToGoal = (userID, goal) => {
 export const unCommitFromGoal = (userID, goal) => {
 
   const request = axios.delete(`${ROOT_URL}/goals/${goal.id}`, {
-      user: userID
+      user: {
+        id: userID
+      }
   })
   debugger
   return {

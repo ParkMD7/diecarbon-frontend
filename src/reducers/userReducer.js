@@ -33,10 +33,11 @@ const userReducer = (state=defaultState, action) => {
     case SIGNOUT:
       return defaultState
 
-    case FETCH_USER_GOALS:
-      console.log('%c GoalReducer Action : ', 'color: orange', action.payload.data)
-      // debugger
-      return { ...state, fetchedUserGoals: action.payload.data.goals }
+    // case FETCH_USER_GOALS:
+    // debugger
+    //   console.log('%c GoalReducer Action : ', 'color: orange', action.payload.data)
+    //   // debugger
+    //   return { ...state, fetchedUserGoals: action.payload.data.goals }
 
     case SEND_EMAIL:
       debugger
