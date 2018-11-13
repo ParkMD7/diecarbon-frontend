@@ -1,5 +1,5 @@
 // user files
-import { SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, SIGNOUT, FETCH_USER_GOALS  } from '../constants';
+import { SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, SIGNOUT, FETCH_USER_GOALS, SEND_EMAIL  } from '../constants';
 
 const defaultState = {
   user: null,
@@ -37,6 +37,10 @@ const userReducer = (state=defaultState, action) => {
       console.log('%c GoalReducer Action : ', 'color: orange', action.payload.data)
       // debugger
       return { ...state, fetchedUserGoals: action.payload.data.goals }
+
+    case SEND_EMAIL:
+      debugger
+      return action.payload.data
 
     default:
       return state

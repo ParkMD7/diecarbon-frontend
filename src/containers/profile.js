@@ -8,12 +8,10 @@ import _ from 'lodash';
 import { Container, Header, Card, Button, Confirm, Image, Grid, Statistic, Icon } from 'semantic-ui-react';
 
 // user files
-// import background from '../images/background.jpg';
-
-// var DuckImage = require('./Duck.jpg');
 import { fetchUserGoals } from '../actions/fetchUserGoals';
 import withAuth from '../hocs/withAuth';
 import ImpactSummary from '../components/impactsummary';
+import EmailFootprintModal from '../components/emailFootprintModal';
 
 
 class Profile extends Component {
@@ -81,7 +79,7 @@ sectionStyle = {
         <Grid divided='vertically' centered>
           <Grid.Row columns={3} centered>
             <Grid.Column width={5} textAlign='center' floated='right'>
-              <Statistic color='light green'>
+              <Statistic color='green'>
                 <Statistic.Value>
                   <Icon name='recycle' />
                   {this.calculateTotalCarbonReduced()}
@@ -92,6 +90,7 @@ sectionStyle = {
 
             <Grid.Column width={5} textAlign='center'>
               <h1>{this.formatName(this.props.name)}'s Profile</h1>
+              <EmailFootprintModal userInfo={this.props.name} userGoals={this.props.goals} userID={this.props.id}/>
             </Grid.Column>
 
             <Grid.Column width={5} textAlign='center' floated='left'>
@@ -147,13 +146,14 @@ sectionStyle = {
 }
 
 
-// const mapStateToProps = ({ user: { user: { name, username, location, picture } }, user: { goals } }) => ({
-const mapStateToProps = ({ user: { user: { name, username, location, picture, goals, id } } }, { user: fetchedUserGoals }) => ({
+
+const mapStateToProps = ({ user: { user: { name, username, location, picture, goals, id, email } } }, { user: fetchedUserGoals }) => ({
   name,
   username,
   location,
   picture,
   id,
+  email,
   goals,
   fetchedUserGoals
 })

@@ -71,7 +71,7 @@ class GoalShowPage extends Component {
               </Card>
             </Grid.Column>
             <Grid.Column width={8} textAlign='center'>
-              <GoalPolarChart />
+              {/* <GoalPolarChart /> */}
             </Grid.Column>
           </Grid.Row>
         </Grid>
