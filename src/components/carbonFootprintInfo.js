@@ -4,7 +4,7 @@ import { Container } from 'semantic-ui-react';
 
 const CarbonFootprintInfo = () => {
   return (
-    <div>
+    <div style={{ 'padding-left': '25px', 'padding-right': '25px'}}>
       <h2>How To Reduce Your Carbon Footprint</h2>
       <Container>
         <p>
