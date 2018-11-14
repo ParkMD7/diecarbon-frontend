@@ -20,10 +20,7 @@ class GoalListContainer extends Component {
     wasClicked: false
   }
 
-  componentWillMount() {
-    // const userID = this.props.user.id.toString()
-    // this.props.fetchUserGoals(userID)
-    // i need to pass the userID to fetch
+  componentDidMount() {
     this.props.fetchGoals()
   }
 
@@ -33,10 +30,6 @@ class GoalListContainer extends Component {
     this.setState({
       wasClicked: true
     })
-  }
-
-  handleChangeButton = () => {
-
   }
 
   handleUnCommitFromGoal = (goal) => {
@@ -89,29 +82,29 @@ class GoalListContainer extends Component {
 
       // { wasClicked } = this.state
       return (
-        <Card textalign='center' height='150px' width='100px' style={{'background-color': 'lightgrey', opacity:'0.85'}} key={goal.id}>
+        <Card textalign='center' height='175px' width='100px' style={{'background-color': 'black', opacity:'0.75'}} key={goal.id}>
           <Link to={`/goals/${goal.id}`}>
-            <Card.Header style={{color:'black'}}><h3>{goal.title}</h3></Card.Header>
+            <Card.Header style={{color:'white'}}><h3>{goal.title}</h3></Card.Header>
             <Card.Content >
               <br />
-              <Icon name={this.determineIcon(goal)} size='huge' color='black'/>
+              <Icon name={this.determineIcon(goal)} size='huge' color='grey'/>
               <br /><br />
               {goal.difficulty==='Easy' ?
-                <Card.Meta style={{color:'black'}}>Difficulty: <span style={{color: 'green'}}>{goal.difficulty}</span></Card.Meta>
+                <Card.Meta style={{color:'white'}}>Difficulty: <span style={{color: 'lightgreen'}}>{goal.difficulty}</span></Card.Meta>
               :
-              <Card.Meta style={{color:'black'}}>Difficulty: <span style={{color: 'red'}}>{goal.difficulty}</span></Card.Meta>
+              <Card.Meta style={{color:'white'}}>Difficulty: <span style={{color: 'red'}}>{goal.difficulty}</span></Card.Meta>
               }
-              <Card.Description style={{color:'black'}}>CO2 Reduction: <span style={{color: 'red'}}>{goal.footprint}</span></Card.Description>
+              <Card.Description style={{color:'white'}}>CO2 Reduction: <span style={{color: 'red'}}>{goal.footprint}</span></Card.Description>
             </Card.Content>
           </Link>
           <Card.Content extra>
             {!usersAlreadyCommittedToGoal ?
-              <Button color='black' active={this.state.wasClicked} fluid onClick={() => this.handleCommitToGoal(goal)}>
+              <Button color='white' fluid onClick={() => this.handleCommitToGoal(goal)}>
                 <Icon name='add' />
                 Commit to This Goal
               </Button>
             :
-            <Button color='red' active={!this.state.wasClicked} fluid onClick={() => this.handleUnCommitFromGoal(goal)}>
+            <Button color='red' fluid onClick={() => this.handleUnCommitFromGoal(goal)}>
               <Icon name='minus' />
               Uncommit From This Goal
             </Button>
@@ -148,7 +141,6 @@ class GoalListContainer extends Component {
               <Card.Group itemsPerRow={3} className="ui container center aligned" >
                 {this.renderGoals()}
               </Card.Group>
-
             </div>
         );
   }

@@ -14,42 +14,45 @@ import { fetchGoals } from '../actions/fetchGoals';
 
 class GoalPolarChart extends Component {
 
-  componentDidMount() {
-    this.props.fetchGoals()
-  }
 
-  totalCategoryCarbon = () => {
+  thisGoalInfo = this.props.goalInfo
+
+  totalCategoryCarbon = (thisGoalInfo) => {
     let footprintArray = []
+    let finalCalc
 
-    return _.map(this.props.goals, goal => {
-      if(goal.category === this.props.goal.category){
-        // debugger
+    _.map(this.props.goals, goal => {
+      if(goal.category === thisGoalInfo.category){
         return footprintArray.push(goal.footprint)
       }
-      let finalCalc = footprintArray.reduce((sum, number) => sum + number, 0)
-      return finalCalc
+      finalCalc = footprintArray.reduce((sum, number) => sum + number, 0)
+      //debugger
     })
+    // debugger
+    return Math.abs(finalCalc)
+    //debugger
   }
 
-  averageCategoryCarbon = () => {
+  averageCategoryCarbon = (thisGoalInfo) => {
     let footprintArray = []
+    let finalCalc
 
-    return _.map(this.props.goals, goal => {
-      if(goal.category === this.props.goal.category){
-        // debugger
+    _.map(this.props.goals, goal => {
+      if(goal.category === thisGoalInfo.category){
         return footprintArray.push(goal.footprint)
       }
-      let finalCalc = footprintArray.reduce((sum, number) => sum + number, 0)
-      return (finalCalc / footprintArray.length)
+      finalCalc = footprintArray.reduce((sum, number) => sum + number, 0)
     })
+    // debugger
+    return (Math.abs(finalCalc) / Math.abs(footprintArray.length))
   }
 
   data = {
-    labels: [`${this.props.goal.category} Total`,`${this.props.goal.category} Average`, `${this.props.goal.title}`],
+    labels: [`${this.props.goalInfo.category} Total`,`${this.props.goalInfo.category} Average`, `${this.props.goalInfo.title}`],
     datasets: [{
         label: "Goal's Carbon Reduced (lbs/yr)",
-        backgroundColor: ['#36a2eb', '#cc65fe','#ffce56'],
-        data: [this.totalCategoryCarbon(), this.averageCategoryCarbon(), `${this.props.goal.footprint}`]
+        backgroundColor: ['#A21C48', '#E93323', '#F3961F'],
+        data: [this.totalCategoryCarbon(this.props.goalInfo), this.averageCategoryCarbon(this.props.goalInfo), `${Math.abs(this.props.goalInfo.footprint)}`]
       }],
     borderColor: 'white'
   }
@@ -57,14 +60,15 @@ class GoalPolarChart extends Component {
     title: {
       display: true,
       text: 'Carbon Reduced By Goal Category',
-      fontColor: 'white'
+      fontColor: 'white',
+      fontSize: 18
     },
     legend: {
-            labels: {
-                fontColor: "white"
-                // fontSize: 18
-            }
-        },
+      labels: {
+          fontColor: "white",
+          fontSize: 14
+      }
+    },
     animation: {
       animateScale: true
     }
@@ -81,9 +85,9 @@ class GoalPolarChart extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  goal: state.goals[ownProps.match.params.id],
+const mapStateToProps = (state) => ({
+  // goal: state.goals[ownProps.match.params.id],
   goals: state.goals
 })
 
-export default withRouter(connect(mapStateToProps, { fetchGoal, fetchGoals })(GoalPolarChart))
+export default withRouter(connect(mapStateToProps)(GoalPolarChart))

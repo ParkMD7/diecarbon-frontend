@@ -1,5 +1,5 @@
 // user files
-import { LOGIN_USER, ROOT_URL, SIGNUP_USER } from '../constants';
+import { ROOT_URL } from '../constants';
 
 export const loginUser = (username, password) => {
   return (dispatch) => {

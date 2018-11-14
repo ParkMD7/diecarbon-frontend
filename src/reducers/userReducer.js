@@ -39,7 +39,7 @@ const userReducer = (state=defaultState, action) => {
 
     case UNCOMMIT_FROM_GOAL:
       // console.log('%c GoalReducer Action : ', 'color: orange', action.goal)
-      return { ...state, userCommittedGoals: state.userCommittedGoals.filter(goal => goal !== action.goal) }
+      return { ...state, userCommittedGoals: [...state.userCommittedGoals.filter(goal => goal !== action.goal)] }
 
     case SEND_EMAIL:
       debugger

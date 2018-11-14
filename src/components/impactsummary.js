@@ -54,14 +54,23 @@ class ImpactSummary extends Component {
     labels: ['Home', 'Travel', 'Food', 'Goods'],
     datasets: [{
         label: "Carbon Reduced (lbs/yr)",
-        backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe','#ffce56'],
+        backgroundColor: ['#A21C48', '#E93323', '#F3961F','#ECE439'],
         data: [this.homeCarbonData(), this.travelCarbonData(), this.foodCarbonData(), this.goodsCarbonData()]
-      }]
+      }],
+    borderColor: 'white'
   }
   options = {
     title: {
       display: true,
-      text: 'Carbon Reduced By Goal Category'
+      text: 'Carbon Reduced By Goal Category',
+      fontColor: 'black',
+      fontSize: 18
+    },
+    legend: {
+      labels: {
+          fontColor: "white",
+          fontSize: 12
+      }
     },
     animation: {
       animateScale: true

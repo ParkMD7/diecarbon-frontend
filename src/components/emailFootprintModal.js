@@ -14,7 +14,9 @@ class EmailFootprintModal extends Component {
       to let you know that climate change is an important issue to me; somuch so that I have signed up for this application, di(e)carbon, \n
       in order to track my carbon footprint and commit to various goals in hopes of lowering my emissons. I know that this issue is equally \n
       important to you so I'd like to encourage you to also commit to lowering your carbon footprint. Please follow the link below to view my profile \n
-      to view the goals I've committed to as well as my reduced footprint.`
+      to view the goals I've committed to as well as my reduced footprint.\n
+      Sincerely, \n
+      ${this.props.userInfo}`
   }
 
   // userGoalSummary = () => {
@@ -38,7 +40,7 @@ class EmailFootprintModal extends Component {
 
   render(){
     return(
-      <Modal trigger={<Button>Send Your Carbon Footprint Reduction Summary to Your Senator</Button>} closeIcon>
+      <Modal trigger={<Button size='big' color='black'>Email Your <span style={{color: 'red'}}>Carbon Footprint</span> Reduction Summary to Your Rep</Button>} closeIcon>
         <Header icon='mail' content='Remind Your Local Senator That Climate Change Is An Important Issue to You' />
         <Modal.Content>
           <Form size="mini" key="mini" onSubmit={this.handleEmailSubmit} >
