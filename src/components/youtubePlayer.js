@@ -9,8 +9,8 @@ import CarbonFootprintInfo from './carbonFootprintInfo'
 const YouTubePlayer = () => {
 
   const opts = {
-      height: '350',
-      width: '590',
+      height: '400',
+      width: '850',
       playerVars: {
         autoplay: 0
       }
@@ -18,13 +18,14 @@ const YouTubePlayer = () => {
 
   return(
     <div>
-      <h1>About Your Carbon Footprint</h1>
+      <h1>About Your <span style={{color:'red'}}>Carbon Footprint</span></h1>
+      <br/>
       <YouTube
         videoId="8q7_aV8eLUE"
         opts={opts}
         onReady={_onReady}
       />
-      <br /><br /><br />
+      <br /><br /><br /><br /><br />
       <CarbonFootprintInfo />
     </div>
   )

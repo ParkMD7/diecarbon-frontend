@@ -45,6 +45,9 @@ class Profile extends Component {
 
       case "Goods":
         return "shopping bag"
+
+      case "Outdoors":
+        return "bug"
     }
   }
 
@@ -61,14 +64,6 @@ sectionStyle = {
     return this.props.userCommittedGoals.map( goal => {
       return (
         <Card textalign='center' height='150px' width='100px' style={{'background-color': 'lightgrey', opacity:'0.85'}} key={goal.id}>
-          {/* <Link to={`/goals/${goal.id}`}>
-            <Card.Header><h3>{goal.title}</h3></Card.Header>
-            <Card.Content >
-              <Image src='https://images-na.ssl-images-amazon.com/images/I/41Nxm91N6WL.jpg' alt="oh no!" height='75px' width='75px'/>
-              <Card.Meta>Difficulty: {goal.difficulty}</Card.Meta>
-              <Card.Description>CO2 Reduction: {goal.footprint}</Card.Description>
-            </Card.Content>
-          </Link> */}
           <Link to={`/goals/${goal.id}`}>
             <Card.Header style={{color:'black'}}><h3>{goal.title}</h3></Card.Header>
             <Card.Content >
@@ -167,18 +162,6 @@ sectionStyle = {
   }
 }
 
-
-
-// const mapStateToProps = ({ user: { user: { name, username, location, picture, goals, id, email } } }, { user: userCommittedGoals }) => ({
-//   name,
-//   username,
-//   location,
-//   picture,
-//   id,
-//   email,
-//   goals,
-//   userCommittedGoals
-// })
 
 const mapStateToProps = (state) => ({
   goals: state.goals,

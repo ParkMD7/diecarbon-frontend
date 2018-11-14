@@ -8,7 +8,7 @@ class ImpactSummary extends Component {
 
   homeCarbonData = () => {
     let footprintArray = []
-    let addedGoal = this.props.goals.map(goal => {
+    let addedGoal = this.props.userCommittedGoals.map(goal => {
       if(goal.category === 'Home'){
         return footprintArray.push(goal.footprint)
       }
@@ -19,7 +19,7 @@ class ImpactSummary extends Component {
 
   travelCarbonData = () => {
     let footprintArray = []
-    let addedGoal = this.props.goals.map(goal => {
+    let addedGoal = this.props.userCommittedGoals.map(goal => {
       if(goal.category === 'Travel'){
         return footprintArray.push(goal.footprint)
       }
@@ -30,7 +30,7 @@ class ImpactSummary extends Component {
 
   foodCarbonData = () => {
     let footprintArray = []
-    let addedGoal = this.props.goals.map(goal => {
+    let addedGoal = this.props.userCommittedGoals.map(goal => {
       if(goal.category === 'Food'){
         return footprintArray.push(goal.footprint)
       }
@@ -41,7 +41,7 @@ class ImpactSummary extends Component {
 
   goodsCarbonData = () => {
     let footprintArray = []
-    let addedGoal = this.props.goals.map(goal => {
+    let addedGoal = this.props.userCommittedGoals.map(goal => {
       if(goal.category === 'Goods'){
         return footprintArray.push(goal.footprint)
       }
@@ -73,22 +73,23 @@ class ImpactSummary extends Component {
       }
     },
     animation: {
-      animateScale: true
+      animateScale: true,
+      duration: 2000,
+      easing: 'easeOutElastic'
     }
   }
 
   render(){
-    // console.log('%c Impact Props: ', 'color: purple', this.homeCarbonData());
     return(
       <div>
-        <Doughnut data={this.data} options={this.options}/>
+        <Doughnut data={this.data} options={this.options} redraw={true}/>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ user: { user: { goals } } }) => ({
-  goals
+const mapStateToProps = (state) => ({
+  userCommittedGoals: state.user.userCommittedGoals
 })
 
 export default connect(mapStateToProps)(ImpactSummary)

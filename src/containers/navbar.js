@@ -20,7 +20,7 @@ class NavBar extends Component {
     if(!this.props.user.user){
       return (
         <Menu inverted vertical size='huge' borderless style={{width: '350px'}}>
-          <Dropdown inverted item fluid text='Navigate To: ' style={{width: '200px'}}>
+          <Dropdown inverted item fluid text='Menu ' style={{width: '200px', color: 'grey'}}>
             <Dropdown.Menu inverted>
 
               <Dropdown.Item as={ Link } name='login' to='/login'>
@@ -46,7 +46,7 @@ class NavBar extends Component {
 
     return(
       <Menu inverted vertical size='huge' borderless style={{width: '350px'}}>
-        <Dropdown inverted item fluid text='Navigate To: ' style={{width: '200px'}}>
+        <Dropdown inverted item fluid text='Menu ' style={{width: '200px', color: 'lightgrey'}}>
           <Dropdown.Menu inverted>
 
             <Dropdown.Item as={ Link } name='profile' to='/'>

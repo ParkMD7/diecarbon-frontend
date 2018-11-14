@@ -7,7 +7,6 @@ import { Card, Icon, Image, Button, Grid } from 'semantic-ui-react';
 
 // user files
 import { fetchGoals } from '../actions/fetchGoals';
-import { fetchUserGoals } from '../actions/fetchUserGoals';
 import { commitToGoal, unCommitFromGoal } from '../actions/commitOrUncommitToGoal';
 import SearchBar from '../components/searchbar';
 import GoalCheckboxFilter from './goalCheckboxFilter';
@@ -16,8 +15,7 @@ import GoalCheckboxFilter from './goalCheckboxFilter';
 class GoalListContainer extends Component {
   state = {
     term: '',
-    input: '',
-    wasClicked: false
+    input: ''
   }
 
   componentDidMount() {
@@ -27,17 +25,11 @@ class GoalListContainer extends Component {
   handleCommitToGoal = (goal) => {
     const userID = this.props.user.id.toString()
     this.props.commitToGoal(userID, goal)
-    this.setState({
-      wasClicked: true
-    })
   }
 
   handleUnCommitFromGoal = (goal) => {
     const userID = this.props.user.id.toString()
     this.props.unCommitFromGoal(userID, goal)
-    this.setState({
-      wasClicked: false
-    })
   }
 
   handleSortBySearchFilter = (userSearchTerm) => {
@@ -66,6 +58,9 @@ class GoalListContainer extends Component {
 
       case "Goods":
         return "shopping bag"
+
+      case "Outdoors":
+        return "bug"
     }
   }
 
@@ -80,7 +75,6 @@ class GoalListContainer extends Component {
         return userGoal.id === goal.id
         })
 
-      // { wasClicked } = this.state
       return (
         <Card textalign='center' height='175px' width='100px' style={{'background-color': 'black', opacity:'0.75'}} key={goal.id}>
           <Link to={`/goals/${goal.id}`}>
@@ -120,7 +114,7 @@ class GoalListContainer extends Component {
     console.log('%c GoalListContainer Props: ', 'color: green', this.props.goals, this.props.user);
         return (
             <div className="ui container center aligned">
-              <h1>Goals To Reduce Your Carbon Footprint</h1>
+              <h1 style={{color: 'white'}}>Goals To Reduce Your <span style={{color: 'red'}}>Carbon Footprint </span></h1>
               <br/>
               <Grid divided='vertically' centered>
                 {/* <Grid.Row columns={1} centered>
@@ -131,7 +125,7 @@ class GoalListContainer extends Component {
 
                 <Grid.Row columns={1} centered>
                   <Grid.Column width={16} textAlign='center' stretched verticalAlign='middle'>
-                    <h4>Filter Goals By Title or Category</h4>
+                    <h4 style={{color: 'white'}}>Filter Goals By Title or Category</h4>
                     <SearchBar search={this.handleSortBySearchFilter}/>
                   </Grid.Column>
                 </Grid.Row>
