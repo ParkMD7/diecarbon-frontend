@@ -19,8 +19,8 @@ class NavBar extends Component {
     console.log('%c GoalListContainer Props: ', 'color: green', this.props.user);
     if(!this.props.user.user){
       return (
-        <Menu inverted vertical size='huge' borderless style={{width: '350px'}}>
-          <Dropdown inverted item fluid text='Menu ' style={{width: '200px', color: 'grey'}}>
+        <Menu inverted vertical size='massive' borderless style={{width: '350px'}}>
+          <Dropdown size='massive' inverted item fluid text='Menu ' style={{width: '200px', color: 'red', 'fontFamily':'Montserrat'}}>
             <Dropdown.Menu inverted>
 
               <Dropdown.Item as={ Link } name='login' to='/login'>
@@ -38,6 +38,11 @@ class NavBar extends Component {
                 About
               </Dropdown.Item>
 
+              <Dropdown.Item as={ Link } name='about' to='/shop'>
+                <Icon name='cart' circular fitted color='red' size='large' aria-label='shop'/>
+                Shop
+              </Dropdown.Item>
+
             </Dropdown.Menu>
           </Dropdown>
         </Menu>
@@ -45,8 +50,8 @@ class NavBar extends Component {
     }
 
     return(
-      <Menu inverted vertical size='huge' borderless style={{width: '350px'}}>
-        <Dropdown inverted item fluid text='Menu ' style={{width: '200px', color: 'lightgrey'}}>
+      <Menu inverted vertical size='massive' borderless style={{width: '350px'}}>
+        <Dropdown size='massive' inverted item fluid text='Menu ' style={{width: '200px', color: 'red', 'fontFamily':'Montserrat'}}>
           <Dropdown.Menu inverted>
 
             <Dropdown.Item as={ Link } name='profile' to='/'>
@@ -62,6 +67,11 @@ class NavBar extends Component {
             <Dropdown.Item as={ Link } name='about' to='/about'>
               <Icon name='info circle' circular fitted color='red' size='large' aria-label='about'/>
               About
+            </Dropdown.Item>
+
+            <Dropdown.Item as={ Link } name='about' to='/shop'>
+              <Icon name='cart' circular fitted color='red' size='large' aria-label='shop'/>
+              Shop
             </Dropdown.Item>
 
             <Dropdown.Item as={ Link } name='signout' onClick={this.handleSignOut} to='/login'>

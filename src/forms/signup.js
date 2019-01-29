@@ -58,10 +58,11 @@ class SignUp extends Component {
         <br /><br /><br /><br /><br /><br />
         <Grid>
           <Grid.Column width={16} textAlign='center' >
-            <Card centered textalign='center' style={{height: 'auto', width: '500px', 'background-color': 'white', opacity:'0.9'}}>
+            <Card centered textalign='center' style={{height: 'auto', width: '700px', 'background-color': 'black', opacity:'0.75'}}>
               <Card.Content>
-                <Form size="mini" key="mini" onSubmit={this.handleSignup} loading={this.props.authenticatingUser} error={this.props.failedLogin} >
-                  <Header><h2 style={{color: 'red'}}>sign up</h2></Header>
+                <Form size="large" key="large" onSubmit={this.handleSignup} loading={this.props.authenticatingUser} error={this.props.failedLogin} >
+                  <h1 style={{color: 'white', 'fontFamily':'Montserrat'}}>Sign Up And Start Making an <span style={{color:'red'}}>Impact</span></h1>
+                  <br />
                   <Form.Field>
                     <Input
                       placeholder='Name'
@@ -113,10 +114,10 @@ class SignUp extends Component {
                       onChange={this.handleChange} />
                   </Form.Field>
 
-                  <Button basic color='blue' type='submit' style={{height: '35px', width: '150px'}}>Sign Up</Button>
-                  <h4>already have an account?</h4>
-                  <Button basic color='blue' style={{height: '35px', width: '150px'}} onClick={event => event.preventDefault()}>
-                    <Link to='/login'>Log In</Link>
+                  <Button inverted color='red' type='submit' style={{height: '35px', width: '150px'}}>Sign Up</Button>
+                  <h3 style={{color: 'white', 'fontFamily':'Raleway'}}>Already Have An Account?</h3>
+                  <Button inverted color='red' style={{height: '35px', width: '150px'}} onClick={event => event.preventDefault()}>
+                    <Link to='/login' style={{color: '#DD6A64'}}>Log In</Link>
                   </Button>
 
                 </Form>

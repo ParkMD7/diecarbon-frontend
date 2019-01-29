@@ -1,18 +1,10 @@
-/* .video-item img{
-  max-width: 64px;
+@font-face {
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
+  src: url('https://fonts.google.com/specimen/Montserrat?selection.family=Montserrat')
 }
 
-.video-detail .details{
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
-
-.list-group-item{
-  cursor: pointer;
-}
-
-.list-group-item:hover{
-  background-color: #eee;
-} */

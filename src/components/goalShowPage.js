@@ -59,7 +59,7 @@ class GoalShowPage extends Component {
   }
 
   render(){
-    console.log('%c GoalShow Props: ', 'color: yellow', this.props);
+    // console.log('%c GoalShow Props: ', 'color: yellow', this.props);
     const { goal } = this.props;
     let usersAlreadyCommittedToGoal = this.props.userCommittedGoals.find( userGoal => {
       return userGoal.id === goal.id
@@ -68,10 +68,11 @@ class GoalShowPage extends Component {
     if(!goal){
       return(
         <div>
+          <br />
           Loading...
           <br /><br />
           <Link to='/'>
-            <Button negative>Back To Goals</Button>
+            <Button size='massive' negative>Back To Goals</Button>
           </Link>
         </div>
       )
@@ -81,39 +82,44 @@ class GoalShowPage extends Component {
       <div style={ this.sectionStyle }>
         <div className="ui container center aligned" >
           <br /><br /><br /><br /><br /><br />
-          <Grid divided='vertically' centered>
+          <Grid divided='vertically' centered style={{border:'none'}}>
             <Grid.Row columns={2} centered>
               <Grid.Column width={8} textAlign='center'>
+                <br />
                 <Link to='/'>
-                  <Button color='black'>Back To Main Goal Page List</Button>
+                  <Button size='massive' color='black' style={{fontFamily:'Montserrat'}}>Back To Main Goal Page List</Button>
                 </Link>
               </Grid.Column>
             </Grid.Row>
             <br /><br /><br /><br /><br /><br />
             <Grid.Row columns={2} centered>
-              <h2>Futher Goal Info</h2>
-              <Grid.Column width={6} textAlign='center'>
-                <Card textalign='center' height='750px' width='650px' style={{'background-color': 'lightgrey', opacity:'0.85'}} key={goal.id}>
+              <div style={{paddingLeft:'10px', paddingRight:'10px'}}>
+                <h2 style={{backgroundColor: 'black', color:'white', 'fontFamily':'Montserrat'}}>Goal Number <span style={{color: 'red'}}>#{goal.id}'s</span> Information Page</h2>
+              </div>
+              <br /><br />
+              <Grid.Column width={6} textAlign='center' centered>
+                <h2 style={{backgroundColor: 'black', color:'white', 'fontFamily':'Montserrat', paddingLeft:'50px', paddingRight:'50px'}}>Goal Card</h2>
+                <Card centered textalign='center' height='750px' width='650px' style={{'backgroundColor': 'black', opacity:'0.75'}} key={goal.id}>
                   <Link to={`/goals/${goal.id}`}>
-                    <Card.Header style={{color:'black'}}><h3>{goal.title}</h3></Card.Header>
+                    <Card.Header style={{color:'white'}}><h3>{goal.title}</h3></Card.Header>
                     <Card.Content >
                       <br />
-                      <Icon name={this.determineIcon(goal)} size='massive' color='black'/>
+                      <Icon name={this.determineIcon(goal)} size='massive' color='grey'/>
                       <br /><br />
                       {goal.difficulty==='Easy' ?
-                        <Card.Meta style={{color:'black'}}>Difficulty: <span style={{color: 'green'}}>{goal.difficulty}</span></Card.Meta>
+                        <Card.Meta style={{color:'white'}}>Difficulty: <span style={{color: 'lightgreen'}}> {goal.difficulty}</span></Card.Meta>
                       :
-                      <Card.Meta style={{color:'black'}}>Difficulty: <span style={{color: 'red'}}>{goal.difficulty}</span></Card.Meta>
+                      <Card.Meta style={{color:'white'}}>Difficulty: <span style={{color: 'red'}}> {goal.difficulty}</span></Card.Meta>
                       }
                       <br />
-                      <Card.Meta>{goal.description}</Card.Meta>
+                      <Card.Meta style={{color:'white'}}>{goal.description}</Card.Meta>
                       <br />
-                      <Card.Description style={{color:'black'}}>CO2 Reduction: <span style={{color: 'red'}}>{goal.footprint}</span></Card.Description>
+                      <Card.Description style={{color:'white'}}>CO2 Reduction: <span style={{color: 'red'}}>{goal.footprint}</span></Card.Description>
                     </Card.Content>
                   </Link>
                   <Card.Content extra>
                     {!usersAlreadyCommittedToGoal ?
-                      <Button color='black' fluid onClick={() => this.handleCommitToGoal(goal)}>
+                      <Button color='grey' fluid onClick={() => this.handleCommitToGoal(goal)}>
                         <Icon name='add' />
                         Commit to This Goal
                       </Button>
@@ -128,7 +134,7 @@ class GoalShowPage extends Component {
 
               </Grid.Column>
               <Grid.Column width={10} textAlign='center'>
-                <h2>Goal's Relative Carbon Impact</h2>
+                <h2 style={{backgroundColor: 'black', color:'white', 'fontFamily':'Montserrat'}}>Goal's Relative <span style={{color: 'red'}}>Carbon Impact</span></h2>
                 <GoalPolarChart goalInfo={this.props.goal}/>
               </Grid.Column>
             </Grid.Row>

@@ -20,7 +20,7 @@ const MainPage = () => {
 
     return (
       <div style={ sectionStyle }>
-        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br />
         <Grid>
 
           <Grid.Column width={8} className="ui container center aligned">
@@ -28,11 +28,12 @@ const MainPage = () => {
           </Grid.Column>
 
 
-          <Grid.Column width={8} className="ui container center aligned" style={{overflowY: 'scroll', height: '900px', 'padding-right': '50px'}} >
+          <Grid.Column width={8} className="ui container center aligned" style={{overflowY: 'scroll', height: '940px', 'padding-right': '50px'}} >
             <GoalListContainer />
           </Grid.Column>
 
         </Grid>
+        <br /><br />
       </div>
     );
   }

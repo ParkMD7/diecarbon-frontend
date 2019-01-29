@@ -24,7 +24,7 @@ class Footprint extends Component {
     if(!this.props.loggedIn){
       return (
         <div>
-          <h2 style={{color: 'red'}}>40,000 lbs/yr</h2>
+          <h2 style={{color: 'red', 'fontFamily':'Montserrat'}}>40,000 lbs/yr</h2>
         </div>
       )
     }
@@ -33,14 +33,14 @@ class Footprint extends Component {
       <>
         {this.calculateTotalCarbonFootprint() >= 40000 ?
           <h1 style={{color: 'red'}}><CountUp start={0} end={this.calculateTotalCarbonFootprint()} delay={0} redraw={true} duration={1} suffix=" lbs/yr" useEasing={false} separator=",">
-              {({ countUpRef }) => (
-                <div>
-                  <span ref={countUpRef} />
-                </div>
-              )}
-            </CountUp></h1>
+            {({ countUpRef }) => (
+              <div>
+                <span ref={countUpRef} />
+              </div>
+            )}
+          </CountUp></h1>
         :
-          <h1 style={{color: 'lightgreen'}}><CountUp start={0} end={this.calculateTotalCarbonFootprint()} delay={0} redraw={true} duration={1} suffix=" lbs/yr" useEasing={false} separator="," >
+        <h1 style={{color: 'lightgreen', 'fontFamily':'Montserrat'}}><CountUp start={0} end={this.calculateTotalCarbonFootprint()} delay={0} redraw={true} duration={1} suffix=" lbs/yr" useEasing={false} separator="," >
             {({ countUpRef }) => (
               <div>
                 <span ref={countUpRef} />

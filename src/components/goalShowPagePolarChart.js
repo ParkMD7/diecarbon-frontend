@@ -61,16 +61,29 @@ class GoalPolarChart extends Component {
       display: true,
       text: 'Carbon Reduced By Goal Category',
       fontColor: 'white',
+      fontFamily: 'Raleway',
       fontSize: 18
     },
     legend: {
       labels: {
           fontColor: "white",
-          fontSize: 14
+          fontFamily: 'Raleway',
+          fontSize: 14,
+          padding: 5
       }
     },
     animation: {
-      animateScale: true
+      animateScale: true,
+      duration: 2000,
+      easing: 'easeOutElastic'
+    },
+    layout: {
+      padding: {
+        left: 10,
+        right: 10,
+        top: 10,
+        bottom: 10
+      }
     }
   }
 

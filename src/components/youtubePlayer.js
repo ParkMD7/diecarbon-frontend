@@ -10,15 +10,15 @@ const YouTubePlayer = () => {
 
   const opts = {
       height: '400',
-      width: '850',
+      width: '550',
       playerVars: {
         autoplay: 0
       }
     };
 
   return(
-    <div>
-      <h1>About Your <span style={{color:'red'}}>Carbon Footprint</span></h1>
+    <div style={{'paddingLeft': '50px', 'paddingRight': '50px'}}>
+      <h1 style={{color: 'white', backgroundColor: 'black', 'fontFamily':'Montserrat'}}>About Your <span style={{color:'red'}}>Carbon Footprint</span></h1>
       <br/>
       <YouTube
         videoId="8q7_aV8eLUE"

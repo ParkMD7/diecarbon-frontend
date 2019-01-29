@@ -32,25 +32,26 @@ class Login extends Component {
   }
 
   render() {
-    console.log('%c PROPS IN LOGINFORM ', 'color: goldenrod', this.props)
     return this.props.loggedIn ? ( <Redirect to="/" /> ) : (
       <div style={ this.sectionStyle }>
         <br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br /><br />
         <Grid>
           <Grid.Column width={16} textAlign='center' >
-            <Card centered textalign='center' style={{height: 'auto', width: '500px', 'background-color': 'white', opacity:'0.9'}} >
+            <Card centered textalign='center' style={{height: 'auto', width: '700px', 'background-color': 'black', opacity:'0.75'}} >
               <Card.Content centered='true' textalign='center' >
-                <Card.Header><h2 style={{color: 'red'}}>log in</h2></Card.Header>
-                <br />
-                <Form size="mini" key="mini" onSubmit={this.handleLoginSubmit} loading={this.props.authenticatingUser} error={this.props.failedLogin} >
+                <h1 style={{color: 'white', 'fontFamily':'Montserrat'}}>Log In And Start Making an <span style={{color:'red'}}>Impact</span></h1>
+                <br /><br />
+                <Form size="large" key="large" onSubmit={this.handleLoginSubmit} loading={this.props.authenticatingUser} error={this.props.failedLogin} >
                   <Message error header={this.props.failedLogin ? this.props.error : null} />
                   <Form.Input placeholder="username" name="username" onChange={this.handleChange} value={this.state.username} />
+                  <br />
                   <Form.Input type="password" placeholder="password" name="password" onChange={this.handleChange} value={this.state.password} />
-                  <Button basic color='blue' type='submit' style={{height: '35px', width: '150px'}}>Log In</Button>
-                  <h4>create a new account</h4>
-                  <Button basic color='blue' style={{height: '35px', width: '150px'}} onClick={event => event.preventDefault()}>
-                    <Link to='/signup'>Sign Up</Link>
+                  <Button inverted color='red' type='submit' style={{height: '35px', width: '150px', 'text-color': 'white'}}>Log In</Button>
+                  <br /><br />
+                  <h3 style={{color: 'white', 'fontFamily':'Raleway'}}>Don't Already Have An Account?</h3>
+                  <Button inverted color='red' style={{height: '35px', width: '150px'}} onClick={event => event.preventDefault()}>
+                    <Link to='/signup' style={{color: '#DD6A64'}}>Sign Up</Link>
                   </Button>
                 </Form>
               </Card.Content>

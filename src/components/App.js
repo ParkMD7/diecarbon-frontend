@@ -11,6 +11,7 @@ import About from './about';
 import NavBarContainer from '../containers/navbarContainer';
 import Profile from '../containers/profile';
 import GoalShowPage from './goalShowPage';
+import Shop from './shop';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
               <Route exact path="/" component={ () => <MainPage /> } />
               <Route exact path='/profile' component={ () => <Profile /> } />
               <Route exact path='/about' component={ () => <About /> } />
+              <Route exact path='/shop' component={ () => <Shop /> } />
               <Route exact path='/goals/:id' component={ () => <GoalShowPage /> } />
               <Route exact path='/signup' component={ () => <SignUp /> } />
               <Route exact path='/login' render={ () => <Login /> } />

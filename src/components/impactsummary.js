@@ -64,18 +64,29 @@ class ImpactSummary extends Component {
       display: true,
       text: 'Carbon Reduced By Goal Category',
       fontColor: 'black',
+      fontFamily: 'Raleway',
       fontSize: 18
     },
     legend: {
       labels: {
-          fontColor: "white",
-          fontSize: 12
+          fontColor: "black",
+          fontFamily: 'Raleway',
+          fontSize: 12,
+          padding: 20
       }
     },
     animation: {
       animateScale: true,
       duration: 2000,
       easing: 'easeOutElastic'
+    },
+    layout: {
+      padding: {
+        left: 10,
+        right: 10,
+        top: 10,
+        bottom: 10
+      }
     }
   }
 

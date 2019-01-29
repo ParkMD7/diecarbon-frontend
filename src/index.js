@@ -11,16 +11,14 @@ import thunk from 'redux-thunk';
 
 // user files
 import App from './components/App';
+import './style/style.css';
 import reducers from './reducers'; // automatically imports the index.js file
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
 
-// const createStoreWithMiddleWare = applyMiddleware(promise, thunk)(createStore);
-// const createStoreWithMiddleWare = composeWithDevTools(applyMiddleware(promise, thunk)(createStore));
 const createStoreWithMiddleWare = createStore(reducers, composeWithDevTools(applyMiddleware(promise, thunk)))
 
 ReactDOM.render(
-  // <Provider store={createStoreWithMiddleWare(reducers)}>
   <Provider store={createStoreWithMiddleWare}>
     <BrowserRouter>
       <App />

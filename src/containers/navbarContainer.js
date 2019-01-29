@@ -18,12 +18,12 @@ class NavBarContainer extends Component {
   render(){
     if(!this.props.loggedIn){
       return (
-        <Menu inverted size='massive' fixed='top' fluid widths={3} style={{height: '75px'}}>
+        <Menu inverted size='massive' fixed='top' fluid widths={3} style={{height: '95px'}}>
           <Menu.Item>
             <Grid divided='horizontally' centered>
               <Grid.Row columns={2}>
                 <Grid.Column width={16} textAlign='center'  >
-                  <h3 style={{color: 'white'}}>The Average Person's Carbon Footprint</h3>
+                  <h3 style={{color: 'white', 'fontFamily':'Montserrat'}}>The Average Person's Carbon Footprint</h3>
                 </Grid.Column>
                 <Grid.Column width={16} textAlign='center' >
                   <Footprint />
@@ -32,8 +32,8 @@ class NavBarContainer extends Component {
             </Grid>
           </Menu.Item>
           <Menu.Item>
-            <Link to='/' style={{color: 'white'}}>
-              <h1 style={{'font-size': '50px'}}>di<span style={{color: 'red'}}>(e)</span>carbon</h1>
+            <Link to='/' style={{color: 'white', 'fontFamily':'Montserrat'}}>
+              <h1 style={{'fontSize': '50px', 'fontFamily':'Montserrat'}}>di<span style={{color: 'red'}}>(e)</span>carbon</h1>
             </Link>
           </Menu.Item>
           <Menu.Item >
@@ -44,12 +44,12 @@ class NavBarContainer extends Component {
     }
 
     return(
-      <Menu inverted size='massive' fixed='top' widths={3} style={{height: '75px'}}>
+      <Menu inverted size='massive' fixed='top' widths={3} style={{height: '95px'}}>
         <Menu.Item>
           <Grid divided='horizontally' centered>
             <Grid.Row columns={2}>
               <Grid.Column width={16} textAlign='center'  >
-                <h3 style={{color: 'white'}}>{this.formatName(this.props.user.name)}'s Current Carbon Footprint</h3>
+                <h3 style={{color: 'white', 'fontFamily':'Montserrat'}}>{this.formatName(this.props.user.name)}'s Current Carbon Footprint</h3>
               </Grid.Column>
               <Grid.Column width={16} textAlign='center' >
                 <Footprint />
@@ -59,7 +59,7 @@ class NavBarContainer extends Component {
         </Menu.Item>
         <Menu.Item>
           <Link to='/' style={{color: 'white'}}>
-            <h1 style={{'font-size': '50px'}}>di<span style={{color: 'red'}}>(e)</span>carbon</h1>
+            <h1 style={{'font-size': '50px', 'fontFamily':'Montserrat'}}>di<span style={{color: 'red'}}>(e)</span>carbon</h1>
           </Link>
         </Menu.Item>
         <Menu.Item >
