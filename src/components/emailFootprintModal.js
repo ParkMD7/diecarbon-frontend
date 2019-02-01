@@ -8,24 +8,43 @@ import { Button, Header, Icon, Modal, Statistic, Divider, Form } from 'semantic-
 import { sendEmailToRep } from '../actions/sendEmailToRep';
 
 class EmailFootprintModal extends Component {
-  constructor(props){
-    super(props)
+  // constructor(props){
+  //   super(props)
+  //
+  //   // this.calculateTotalCarbonReduced = () => {
+  //   //   let totalCarbonReduced = this.props.userGoals.reduce((sum, goal) => sum + goal.footprint, 0)
+  //   //   return totalCarbonReduced
+  //   // }
 
-    this.calculateTotalCarbonReduced = () => {
-      let totalCarbonReduced = this.props.userGoals.reduce((sum, goal) => sum + goal.footprint, 0)
-      return totalCarbonReduced
-    }
+  //   this.state = {
+      // user_email_message: `Dear Representitive, \n
+      //   My name is ${this.props.user.name} and I am one of the millions of New Yorkers that you represent. I am emailing you today \n
+      //   to let you know that climate change is an important issue to me; somuch so that I have signed up for this application, di(e)carbon, \n
+      //   in order to track my carbon footprint and commit to various goals in hopes of lowering my emissons. I know that this issue is equally \n
+      //   important to you so I'd like to encourage you to also commit to lowering your carbon footprint. I have committed to ${this.props.userCommittedGoals.length} goals \n
+      //   and lowered by carbon footprint by ${this.calculateTotalCarbonReduced()} lbs/year. I encourage you to join me by making a committment to lower your footprint too.\n
+      //   Sincerely, \n
+      //   ${this.props.user.name}`
+  //   }
+  // }
+  state = { user_email_message: ""}
 
-    this.state = {
+  componentDidMount() {
+    this.setState({
       user_email_message: `Dear Representitive, \n
-        My name is ${this.props.userInfo} and I am one of the millions of New Yorkers that you represent. I am emailing you today \n
+        My name is ${this.props.user.name} and I am one of the millions of New Yorkers that you represent. I am emailing you today \n
         to let you know that climate change is an important issue to me; somuch so that I have signed up for this application, di(e)carbon, \n
         in order to track my carbon footprint and commit to various goals in hopes of lowering my emissons. I know that this issue is equally \n
-        important to you so I'd like to encourage you to also commit to lowering your carbon footprint. I have committed to ${this.props.userGoals.length} goals \n
+        important to you so I'd like to encourage you to also commit to lowering your carbon footprint. I have committed to ${this.props.userCommittedGoals.length} goals \n
         and lowered by carbon footprint by ${this.calculateTotalCarbonReduced()} lbs/year. I encourage you to join me by making a committment to lower your footprint too.\n
         Sincerely, \n
-        ${this.props.userInfo}`
-    }
+        ${this.props.user.name}`
+    })
+  }
+
+  calculateTotalCarbonReduced = () => {
+    let totalCarbonReduced = this.props.userCommittedGoals.reduce((sum, goal) => sum + goal.footprint, 0)
+    return totalCarbonReduced
   }
 
   handleEmailSubmit = () => {
@@ -52,4 +71,9 @@ class EmailFootprintModal extends Component {
   }
 }
 
-export default connect(null, { sendEmailToRep })(EmailFootprintModal)
+const mapStateToProps = ({ user }) => ({
+  user: user.user,
+  userCommittedGoals: user.userCommittedGoals
+})
+
+export default connect(mapStateToProps, { sendEmailToRep })(EmailFootprintModal)
