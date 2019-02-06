@@ -25,23 +25,21 @@ class GoalShowPage extends Component {
       backgroundImage: 'url(' + this.background + ')'
   };
 
+  // NOTE: this callback function takes in a goal and returns an icon based on that goal's category
   determineIcon = (goal) => {
     switch(goal.category){
-
       case "Home":
         return "home"
-
       case "Travel":
         return "plane"
-
       case "Food":
         return "food"
-
       case "Goods":
         return "shopping bag"
     }
   }
 
+  // NOTE: this function allows a user to commit to a specific goal
   handleCommitToGoal = (goal) => {
     const userID = this.props.user.id.toString()
     this.props.commitToGoal(userID, goal)
@@ -50,6 +48,7 @@ class GoalShowPage extends Component {
     })
   }
 
+  // NOTE: this function allows a user to uncommit from a specific goal
   handleUnCommitFromGoal = (goal) => {
     const userID = this.props.user.id.toString()
     this.props.unCommitFromGoal(userID, goal)

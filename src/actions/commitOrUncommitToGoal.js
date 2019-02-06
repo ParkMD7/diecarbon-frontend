@@ -21,6 +21,7 @@ export const unCommitFromGoal = (userID, goal) => {
   const request = axios.patch(`${ROOT_URL}/goals/${goal.id}/unsubsribe`, {
     user: userID
   })
+  debugger
   return {
     type: UNCOMMIT_FROM_GOAL,
     payload: request,

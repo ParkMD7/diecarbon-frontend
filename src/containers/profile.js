@@ -1,5 +1,3 @@
-// UPDATE -- use " " for all JSX and ' ' for non-JSX
-
 // dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -16,15 +14,18 @@ import EmailFootprintModal from '../components/emailFootprintModal';
 
 class Profile extends Component {
 
+  // NOTE: this function formats a user's first name to be title case
   formatName = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1);
   }
 
+  // NOTE: this function uses reduce to calculate the total carbon a user has lowered their footprint by
   calculateTotalCarbonReduced = () => {
     let totalCarbonReduced = this.props.userCommittedGoals.reduce((sum, goal) => sum + goal.footprint, 0)
     return totalCarbonReduced
   }
 
+  // NOTE: this function allows a user to uncommit from a specific goal
   handleUnCommitFromGoal = (goal) => {
     const userID = this.props.user.id.toString()
     this.props.unCommitFromGoal(userID, goal)
@@ -33,21 +34,17 @@ class Profile extends Component {
     })
   }
 
+  // NOTE: this callback function takes in a goal and returns an icon based on that goal's category
   determineIcon = (goal) => {
     switch(goal.category){
-
       case "Home":
         return "home"
-
       case "Travel":
         return "plane"
-
       case "Food":
         return "food"
-
       case "Goods":
         return "shopping bag"
-
       case "Outdoors":
         return "bug"
     }
@@ -62,6 +59,7 @@ sectionStyle = {
     backgroundImage: 'url(' + this.background + ')'
 };
 
+  // NOTE: this function returns a Card for every goal a user has committed to
   renderCommittedGoals = () => {
     return this.props.userCommittedGoals.map( goal => {
       return (

@@ -7,11 +7,13 @@ import CountUp from 'react-countup';
 
 class Footprint extends Component {
 
+  // NOTE: this function uses reduce to calculate the total carbon a user has lowered their footprint by
   calculateTotalCarbonReduced = () => {
     let totalCarbonReduced = this.props.userCommittedGoals.reduce((sum, goal) => sum + goal.footprint, 0)
     return totalCarbonReduced
   }
 
+  // NOTE: this function takes the total from calculateTotalCarbonReduced() and subtracts it from 40,000 (the starting carbon footprint for every new user)
   calculateTotalCarbonFootprint = () => {
     let total
     let carbonReduced = this.calculateTotalCarbonReduced()

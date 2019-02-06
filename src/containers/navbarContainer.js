@@ -10,12 +10,13 @@ import Footprint from './footprint'
 
 class NavBarContainer extends Component {
 
+  // NOTE: this function formats a user's first name to be title case
   formatName = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1)
   }
 
-
   render(){
+    // NOTE: if a user is not logged in then they will see a different navbar
     if(!this.props.loggedIn){
       return (
         <Menu inverted size='massive' fixed='top' fluid widths={3} style={{height: '95px'}}>

@@ -10,7 +10,6 @@ import { fetchGoals } from '../actions/fetchGoals';
 import { commitToGoal, unCommitFromGoal } from '../actions/commitOrUncommitToGoal';
 import SearchBar from '../components/searchbar';
 import GoalCheckboxFilter from './goalCheckboxFilter';
-import GoalCardButton from '../components/goalCardButton';
 
 
 class GoalListContainer extends Component {
@@ -35,6 +34,7 @@ class GoalListContainer extends Component {
   // NOTE: this function allows a user to uncommit from a specific goal
   handleUnCommitFromGoal = (goal) => {
     const userID = this.props.user.id.toString()
+    debugger
     this.props.unCommitFromGoal(userID, goal)
   }
 

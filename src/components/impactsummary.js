@@ -6,6 +6,10 @@ import { Doughnut } from 'react-chartjs-2';
 
 class ImpactSummary extends Component {
 
+
+  // NOTE: this function and the similar ones following it are meant to calculate the carbon totals associated with a specific category - in this case its 'home'
+  // NOTE: the function maps through the goals a user has committed to and pushes them into a new array and then uses reduce to calculate the total Carbon
+  // NOTE: that final value is then used in the data obj which is fed into the chart.js data param
   homeCarbonData = () => {
     let footprintArray = []
     let addedGoal = this.props.userCommittedGoals.map(goal => {
@@ -50,6 +54,7 @@ class ImpactSummary extends Component {
     return finalCalc
     }
 
+  // NOTE: this data obj takes the carbon calculated from the functions above and feeds them into the chart.js Doughnut within the render() method
   data = {
     labels: ['Home', 'Travel', 'Food', 'Goods'],
     datasets: [{
@@ -59,6 +64,7 @@ class ImpactSummary extends Component {
       }],
     borderColor: 'white'
   }
+  // NOTE: this options obj is mostly style and animation preferences that is fed into the Doughnut chart.js within the render() method
   options = {
     title: {
       display: true,
