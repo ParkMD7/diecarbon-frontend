@@ -8,6 +8,7 @@ import CarbonFootprintInfo from './carbonFootprintInfo'
 
 const YouTubePlayer = () => {
 
+  // NOTE: this obj sets params for the YouTube Video and has autoplay turned off because I'm not a monster
   const opts = {
       height: '400',
       width: '550',

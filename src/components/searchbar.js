@@ -4,10 +4,12 @@ import { Input, Button, Form } from 'semantic-ui-react';
 
 class SearchBar extends Component {
 
+  // NOTE: this function tracks the users entered text (event.target.value) and then passes that text back up into GoalListContainer through a cbf
   onInputChange = (event) => {
     this.props.search(event.target.value)
   }
 
+  // NOTE: this function prevents the default behavior of a page refresh when a user clicks enter within the searchbar field
   onFormSubmit = (event) => {
     event.preventDefault();
   }

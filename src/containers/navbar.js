@@ -9,14 +9,14 @@ import { signout } from '../actions/currentUser';
 
 class NavBar extends Component {
 
+  // NOTE: this function signs a user of out their current session
   handleSignOut = (event) => {
     event.preventDefault()
     this.props.signout()
   }
 
-
   render(){
-    console.log('%c GoalListContainer Props: ', 'color: green', this.props.user);
+    // console.log('%c navbar Props: ', 'color: green', this.props.user);
     if(!this.props.user.user){
       return (
         <Menu inverted vertical size='massive' borderless style={{width: '350px'}}>
